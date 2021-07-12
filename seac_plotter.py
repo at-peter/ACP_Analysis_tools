@@ -6,31 +6,49 @@ import pandas as pd
 from pathlib import Path
 import seaborn as sns
 
-path = Path("C:/source/seac/seac/results/sacred/15/metrics.json")
-# FIXME: coop envs dont save agent rewards, only the total sum of all in the episode_reward query
-with open(path) as f:
-    Loaded_dict = json.load(f)
-print(Loaded_dict.keys())
 
-def open_file(path):
+
+
+
+# with open(path) as f:
+#     Loaded_dict = json.load(f)
+# print(Loaded_dict.keys())
+
+def open_file(directory_path, file_name):
+    path = directory_path + file_name
+    path = Path(path)
     with open(path) as f:
-        loaded_dictionary = json.load()
+        loaded_dictionary = json.load(f)
     return loaded_dictionary
+
+def extract_config_data(config_dict):
+
+    name = config_dict['env_name']
+    num_agents = name.split('-')[2]
+    num_agents = int(num_agents[0])
+    return name, num_agents
+
 
 def transform_dataframe(loaded_dictionary, num_agents):
    
     dataframe_list = []
+    #this is for agent plotting data
     for agent in range(num_agents):
         query_str = 'agent'+str(agent)+'/episode_reward'
         extracted_data = loaded_dictionary[query_str]['values']
         dataframe_list.append(pd.DataFrame(extracted_data, columns=[query_str]))
-        # if agent == range(num_agents)[-1]:
-        #     print(dataframe_list)
-        #     extracted_data = loaded_dictionary[query_str]["steps"]
-        #     dataframe_list.append(pd.DataFrame(extracted_data, columns=['steps']))
+        if agent == range(num_agents)[-1]:
+            # Get the steps
+            extracted_data = loaded_dictionary[query_str]["steps"]
+            dataframe_list.append(pd.DataFrame(extracted_data, columns=['steps']))
     
-    # print(dataframe_list)
-    output_frame = pd.concat(dataframe_list,axis=1) 
+
+    # append the dataframe for the episode rewards:
+    dataframe_list.append(pd.DataFrame(loaded_dictionary['episode_reward']['values'],
+                                       columns=['episode_reward']))
+    output_frame = pd.concat(dataframe_list, axis=1)
+    # steps steps as the index for the Dataframe
+    output_frame.set_index('steps', inplace=True)
     return output_frame
 
 def plot(data , metric):
@@ -54,26 +72,70 @@ def plot_many_agents(data, metric, num_agents):
     plt.legend()
     # plt.show()
 
+
+def calculate_iqr(dataframe, num_agents):
+    iqr = []
+    # extract the IQR values
+    for agent in range(num_agents):
+        query = 'agent' + str(agent) + '/episode_reward'
+        q75, q25 = np.percentile(dataframe[query], [75, 25])
+        iqr.append(q75 - q25)
+    # print to the screen
+
+    # save the values to a txt file
+    return iqr
+
+def save_values(values, name, save_path):
+    write_values =["%s\n" % value for value in values]
+    filename = save_path.joinpath(name + '.txt')
+
+    with open(filename, 'a') as file:
+        file.write('------\n')
+        file.writelines(write_values)
+
+    return 1
+
 if __name__ == '__main__':
     sns.set_theme(style='darkgrid')
-    data = transform_dataframe(Loaded_dict,2)
-    # interquartile range calculation 
-    # todo: make this into a function
-    q75, q25 = np.percentile(data['agent0/episode_reward'], [75,25])
-    iqr0=q75-q25
-    q75, q25 = np.percentile(data['agent1/episode_reward'], [75,25])
-    iqr1=q75-q25
 
-    print('IQR 0', iqr0)
-    print('IQR 1', iqr1)
-    # print(data.head(2))
-    # sns.distplot(data)
-    # data = data.rolling(7).mean()
-    sns.lineplot(data=data, palette='tab10')
-    plt.title('Episode rewards for 10x10 2p 8f env and SEAC alg')
-    plt.ylabel('reward')
-    plt.xlabel('2000 timestep intervals')
-    plt.show()
+    # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
+    metrics_save_path = Path("D:/acp_data/metrics/")
+    plots_save_path = Path("D:/acp_data/plots/")
+
+    for i in range(1,17):
+        directory_path = 'C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/' + str(i) +'/'
+        metrics_data = open_file(directory_path,'metrics.json')
+        config_data = open_file(directory_path, 'config.json')
+
+        name, num = extract_config_data(config_data)
+
+        data = transform_dataframe(metrics_data, num)
+        # interquartile range calculation
+        # todo: make this into a function
+
+        iqr =calculate_iqr(data, num)
+        save_values(iqr,name,metrics_save_path)
+
+
+        # for i, val in enumerate(iqr):
+        #     print('IQR agent ' + str(i) + ' ' + str(val))
+
+
+        plt.figure(0)
+        title = 'total rewards for '+ name +' SEAC alg'
+        # sns.lineplot(data=data, palette='tab10', alpha=0.35)
+        sns.lineplot(data=data, x='steps', y='episode_reward')
+        plt.title(title)
+        plt.ylabel('reward')
+        plt.xlabel('Episode intervals')
+        file_name = title.replace(' ', '_')
+        plt.savefig(plots_save_path.joinpath(file_name + '.jpg'), dpi=200)
+
+    # plt.figure(1)
+    # title = 'Episode rewards for 16x16 4p 6f env and SEAC alg'
+    # sns.lineplot(data=data, x='steps', y='episode_reward')
+    # plt.show()
+
     # plt.figure(0)
     # plot(Loaded_dict,'episode_reward')
     # plt.figure(1)
