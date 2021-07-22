@@ -86,6 +86,11 @@ def calculate_iqr(dataframe, num_agents):
     # save the values to a txt file
     return iqr
 
+def calculate_mean(dataframe, num_agents):
+    means = []
+    for agent in range(num_agents):
+        query = 'agent' + str(agent) + '/episode_reward'
+        means.append()
 
 def save_values(values, name, save_path):
     write_values =["%s\n" % value for value in values]
@@ -115,6 +120,8 @@ def analyze_many(directory_values):
         # todo: make this into a function
 
         iqr =calculate_iqr(data, num)
+        # TODO: make a average calculation here too so that I can get a [mean, spread] value for each 
+        # data point 
         save_values(iqr,name,metrics_save_path)
 
 
