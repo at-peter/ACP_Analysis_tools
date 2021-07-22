@@ -51,6 +51,7 @@ def transform_dataframe(loaded_dictionary, num_agents):
     output_frame.set_index('steps', inplace=True)
     return output_frame
 
+
 def plot(data , metric):
     x = range(len(data[metric]['values']))
     y = data[metric]['values']
@@ -85,6 +86,7 @@ def calculate_iqr(dataframe, num_agents):
     # save the values to a txt file
     return iqr
 
+
 def save_values(values, name, save_path):
     write_values =["%s\n" % value for value in values]
     filename = save_path.joinpath(name + '.txt')
@@ -95,14 +97,13 @@ def save_values(values, name, save_path):
 
     return 1
 
-if __name__ == '__main__':
-    sns.set_theme(style='darkgrid')
 
-    # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
-    metrics_save_path = Path("D:/acp_data/metrics/")
-    plots_save_path = Path("D:/acp_data/plots/")
+def analyze_many(directory_values):
 
     for i in range(1,17):
+        metrics_save_path = Path("D:/acp_data/metrics/")
+        plots_save_path = Path("D:/acp_data/plots/")
+
         directory_path = 'C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/' + str(i) +'/'
         metrics_data = open_file(directory_path,'metrics.json')
         config_data = open_file(directory_path, 'config.json')
@@ -130,6 +131,31 @@ if __name__ == '__main__':
         plt.xlabel('Episode intervals')
         file_name = title.replace(' ', '_')
         plt.savefig(plots_save_path.joinpath(file_name + '.jpg'), dpi=200)
+
+def analyze_total(directory_number):
+    directory_path = 'D:/acp_data/data_from_Atlas/seac/sacred/' + str(directory_number) + '/'
+    metrics_data = open_file(directory_path,"metrics.json")
+    config_data = open_file(directory_path, 'config.json')
+
+    check_list = np.array(metrics_data['episode_reward']['values'])
+    nonzero_index = list(np.nonzero(check_list)[0])
+
+    name, num = extract_config_data(config_data)
+    data = transform_dataframe(metrics_data, num)
+    plt.figure(0)
+    sns.lineplot(data=data, x='steps', y='episode_reward')
+    title = 'total rewards for ' + name + ' SEAC alg'
+    plt.title(title)
+    plt.ylabel('reward')
+    plt.xlabel('update intervals')
+    plt.show()
+if __name__ == '__main__':
+    sns.set_theme(style='darkgrid')
+    analyze_total(13)
+    # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
+
+
+
 
     # plt.figure(1)
     # title = 'Episode rewards for 16x16 4p 6f env and SEAC alg'
