@@ -140,13 +140,14 @@ def analyze_many(directory_values):
         plt.savefig(plots_save_path.joinpath(file_name + '.jpg'), dpi=200)
 
 def analyze_total(directory_number):
-    directory_path = 'D:/acp_data/data_from_Atlas/seac/sacred/' + str(directory_number) + '/'
+    # directory_path = 'D:/acp_data/data_from_Atlas/seac/sacred/' + str(directory_number) + '/'
+    directory_path = 'C:/source/seac/seac/results/sacred/' + str(directory_number) + '/'
     metrics_data = open_file(directory_path,"metrics.json")
     config_data = open_file(directory_path, 'config.json')
 
     check_list = np.array(metrics_data['episode_reward']['values'])
     nonzero_index = list(np.nonzero(check_list)[0])
-
+    print(nonzero_index)
     name, num = extract_config_data(config_data)
     data = transform_dataframe(metrics_data, num)
     plt.figure(0)
@@ -157,8 +158,9 @@ def analyze_total(directory_number):
     plt.xlabel('update intervals')
     plt.show()
 if __name__ == '__main__':
+    
     sns.set_theme(style='darkgrid')
-    analyze_total(13)
+    analyze_total(27)
     # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
 
 
