@@ -50,19 +50,19 @@ def generate_dcc_graph(figure, id):
         )
 
 if __name__ == '__main__':
+    #TODO: make this alterable in the dashboard so that you can plot all sorts of experiments 
     base_path = 'C:/source/atpeterepymarl/src/results/sacred/'
+    # TODO: make this altreable in dashboard so that you can change the ranges without touching the code.
     experiment_range = range(231,241)
     x_data = {}
     y_data = {}
-   
+    app_array = []
     for index, experiment in enumerate(experiment_range):
         #loop through all the experiments that are fed to the IDA 
         path = base_path + str(experiment) + '/metrics.json'
         #open each experiment 
         data = open_file(path)
         del data['grad_norm']
-        # FIXME xdata needs only be initialized once 
-        # FIXME: ydata[]
         if index == 0: 
             for key in data.keys():
                 y_data[key] = []
@@ -71,54 +71,30 @@ if __name__ == '__main__':
         for datum ,key in enumerate(data.keys()):
             y_data[key].append(data[key]['values'])
 
-    #TODO: work a bit more on this    
     
-    # fig  = px.line(x=x_data,y=y_data, title=)
-
-    # fig.update_layout(
-    #     plot_bgcolor=colors['background'],
-    #     paper_bgcolor=colors['background'],
-    #     font_color=colors['text']
-    # )
     li = {
         'title': 'episode length mean',
         'theme': 'dark'
     }
-    fig = make_line_graph(x_data['ep_length_mean'], y_data['ep_length_mean'], li)
-   
-
+    # fig = make_line_graph(x_data['ep_length_mean'], y_data['ep_length_mean'], li)
     style_ = {'textAlign':'center', 'backgroundColor': colors['background'], 'color': colors['text']}
-    
-
-    child = []
-
     text = 'I can make this programatically now'
-    child.append(html.H1(children=text, style=style_))
-    child.append(html.Div(children=text, style=style_))
-
-    app.layout = html.Div(style= style_, children=child)
-    # app.layout = html.Div(style = style_ ,children=[
-    # html.H1(children='IDA dashboard',style={'textAlign':'center', 'backgroundColor': colors['background'], 'color': colors['text']}),
-    # html.Div(children=str(data.keys()), style={'textAlign':'center', 'backgroundColor': colors['background']}),
-    # # dcc.Graph(
-    # #     id='test-graph',
-    # #     figure=make_line_graph(x_data['ep_length_mean'], y_data['ep_length_mean'], li)
-    # #     )
-    # generate_dcc_graph(fig, 'one'),
-    # generate_dcc_graph(fig, 'two')
-    #     # ,
+    app_array.append(html.H1(children=text, style=style_))
+    app_array.append(html.Div(children=text, style=style_))
+    for key in data.keys():
+        #this is where you generate and append all the figures 
+        li['title']=key
+        fig = make_line_graph(x_data[key], y_data[key], li)
+        app_array.append(generate_dcc_graph(fig,key))
     
-    # # dcc.Graph(
-    # #     id='test-graph2',
-    # #     figure=fig2
-    # #     ),
 
-    # ])
+    
 
+    app.layout = html.Div(style= style_, children=app_array)
     # children is an array [title, div, graph, graph]
     # TODO: make a function that generates the graphs and appends them to the array that has the title and div in it
     app.run_server(debug=True, dev_tools_hot_reload=True)
-    # plt.show()
+    
             
             
         
