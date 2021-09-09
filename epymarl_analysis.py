@@ -15,6 +15,9 @@ def convergence_analysis(path):
     return final_training_values, final_test_values
 
 if __name__ == "__main__":
+    '''
+    This code is the code that checks if the final value of the training and testing return means are above 0.9
+    '''
     sns.set_theme(style='darkgrid')
     base_path = 'C:/source/atpeterepymarl/src/results/sacred/' 
     # path = 'C:/source/atpeterepymarl/src/results/sacred/171/metrics.json'
@@ -29,7 +32,7 @@ if __name__ == "__main__":
     test_above_cutoff = 0 
     training_above_cutoff = 0
 
-    experiment_list = range(221,232)
+    experiment_list = range(242,252)
     for _ , experiment in enumerate(experiment_list):
         path = base_path + str(experiment) + '/metrics.json'
         data = open_file(path)
@@ -57,7 +60,7 @@ if __name__ == "__main__":
     pyplot.figure(1)
     pyplot.plot(x_training, final_training_values,'-x')
     pyplot.plot(x_training, training_cutoff)
-    pyplot.title('Final training episode means Qmix 8x8-2p-3f')
+    pyplot.title('Final training episode means Qmix 9x9-2p-3f, max timesteps 50')
     pyplot.xlabel('runs')
     pyplot.ylabel('final episode mean return')
     pyplot.show()

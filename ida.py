@@ -50,10 +50,13 @@ def generate_dcc_graph(figure, id):
         )
 
 if __name__ == '__main__':
+    '''
+    This code is the dashboard for initial data assement. Currently there is a problem that all the plots wont show which is bothering me.
+    '''
     #TODO: make this alterable in the dashboard so that you can plot all sorts of experiments 
     base_path = 'C:/source/atpeterepymarl/src/results/sacred/'
     # TODO: make this altreable in dashboard so that you can change the ranges without touching the code.
-    experiment_range = range(231,241)
+    experiment_range = range(192,222)
     x_data = {}
     y_data = {}
     app_array = []
@@ -62,7 +65,11 @@ if __name__ == '__main__':
         path = base_path + str(experiment) + '/metrics.json'
         #open each experiment 
         data = open_file(path)
-        del data['grad_norm']
+        try: 
+            del data['grad_norm']
+        except:
+            print('it didnt work', str(experiment))
+        
         if index == 0: 
             for key in data.keys():
                 y_data[key] = []

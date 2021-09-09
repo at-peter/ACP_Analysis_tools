@@ -55,6 +55,7 @@ def make_mapfile(directory_path):
     return 1
 
 def scan_directory(base_directory_path):
+    counter = 0 
     folder_list = os.listdir(base_directory_path)
     # TODO: get rid of the -source item
     folder_list.remove('_sources')
@@ -66,13 +67,16 @@ def scan_directory(base_directory_path):
         config = directory+'config.json'
         algo, env, steps = extract_configs(config)
         # print(value, algo, env, steps)
-        if algo == 'qmix' and env == 'Foraging-9x9-2p-3f-v1' and steps == 65:
-            print(value, steps) 
+        if algo == 'qmix' and env == 'Foraging-8x8-2p-3f-v1' and steps == 50:
+            print(value, steps)
+            counter += 1 
         flag = check_metrics(metrics)
         # print(flag)
         if not flag: 
             print(value, " Has empty metrics")
-            # delete_directory_contents(directory)
+            delete_directory_contents(directory)
+    
+    print("Total number of runs", counter)
 
 def delete_directory_contents(path):
     try: 

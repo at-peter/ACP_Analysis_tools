@@ -26,8 +26,10 @@ def plot_many_means(array_of_experiments, legend_labels):
         # extract all the training standard deviation data from the dictionary
         std_array.append(data['return_std']['values'])
     
-    #get step value: 
 
+
+    
+    #get step value: 
     steps = data['return_mean']['steps']
     print(len(steps))
     #mean figure
@@ -106,10 +108,14 @@ def plot_individual_agent_values(experiment_list, agent_legend_labels, number_of
 
 
 if __name__ == '__main__':
+    '''
+    This code plots the means of the epymarl code. 
+    
+    '''
     sns.set_theme(style='darkgrid')
     # sns.set_palette("bright")
     sns.set_palette("Set2")
-    experiment_list = range(231,242)
+    experiment_list = range(242,252)
     # lables = ['Agent 0 - MADDPG','Agent 0 - vdn', 'Agent 0 - iql', 'Agent 0 - QMIX', 'Agent 1 - MADDPG' ,'Agent1 vdn', 'Agent 1 iql', 'Agent 1 QMIX' ]
     lables = []
 
