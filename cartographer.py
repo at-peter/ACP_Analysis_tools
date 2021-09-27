@@ -38,8 +38,9 @@ def check_metrics(path):
     tested and works 
     '''
     empty = False
-
+    # print(path)
     data = open_file(path)
+    
     #check empty dictionary
     if not data:
         empty = True
@@ -54,7 +55,7 @@ def make_mapfile(directory_path):
 
     return 1
 
-def scan_directory(base_directory_path):
+def scan_directory(base_directory_path, algorithm, environment,step=50, show_directory=False):
     counter = 0 
     folder_list = os.listdir(base_directory_path)
     # TODO: get rid of the -source item
@@ -65,18 +66,19 @@ def scan_directory(base_directory_path):
         # print(metrics)
         # metrics_data = open_file(metrics)
         config = directory+'config.json'
-        algo, env, steps = extract_configs(config)
+        algo, env, steps = extract_configs(config) 
         # print(value, algo, env, steps)
-        if algo == 'qmix' and env == 'Foraging-8x8-2p-3f-v1' and steps == 50:
-            print(value, steps)
+        if algo == algorithm and env == environment and steps == step:
+            if show_directory:
+                print(value, steps)
             counter += 1 
         flag = check_metrics(metrics)
         # print(flag)
         if not flag: 
             print(value, " Has empty metrics")
-            delete_directory_contents(directory)
+            # delete_directory_contents(directory)
     
-    print("Total number of runs", counter)
+    print("Total number of runs for",algorithm, environment, counter)
 
 def delete_directory_contents(path):
     try: 
@@ -85,9 +87,21 @@ def delete_directory_contents(path):
         print('error cleaning directory', path)
 
 
+
 if __name__ == "__main__":
 
     path = 'C:/source/atpeterepymarl/src/results/sacred/'
+    atlas_path = 'D:/atlas_DADA/'
+
+    algorithms = [ 'qmix', 'maddpg', 'iql', 'coma', 'ia2c', 'ippo','maa2c','qtran','vdn']
+    envs = ['Foraging-8x8-3p-1f-coop-v1','Foraging-8x8-2p-3f-v1', 'Foraging-8x8-2p-2f-coop-v1', 'Foraging-10x10-2p-8f-v1', 'Foraging-2s-8x8-2p-3f-v1' ]
+    
+    # algorithms = [ 'iql']
+    # envs = ['Foraging-16x16-4p-3f-v1']
+
     # open_file(path)
-    scan_directory(path)
+    # scan_directory(path)
+    for _ , alg in enumerate(algorithms):
+        for _, env in enumerate(envs):
+            scan_directory(atlas_path, alg, env)
     

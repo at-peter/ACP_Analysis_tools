@@ -6,23 +6,20 @@ import pandas as pd
 from pathlib import Path
 import seaborn as sns
 
-
-
-
-
-# with open(path) as f:
-#     Loaded_dict = json.load(f)
-# print(Loaded_dict.keys())
-
 def open_file(directory_path, file_name):
+    '''
+    This function opens the json file at the file_name and returns a dictionary of the contents
+    '''
     path = directory_path + file_name
-    path = Path(path)
+    # path = Path(path)
     with open(path) as f:
         loaded_dictionary = json.load(f)
     return loaded_dictionary
 
 def extract_config_data(config_dict):
-
+    '''
+    This function takes the data from a config file and returns the algorithm name and the number of agents
+    '''
     name = config_dict['env_name']
     num_agents = name.split('-')[2]
     num_agents = int(num_agents[0])
@@ -30,7 +27,10 @@ def extract_config_data(config_dict):
 
 
 def transform_dataframe(loaded_dictionary, num_agents):
-   
+    '''
+    This function takes a loaded dictionary and separates out the individual agent means. 
+    The output of this function is a single dataframe that has the number of steps as the index.  
+    '''
     dataframe_list = []
     #this is for agent plotting data
     for agent in range(num_agents):
@@ -116,6 +116,7 @@ def analyze_many(directory_values):
         name, num = extract_config_data(config_data)
 
         data = transform_dataframe(metrics_data, num)
+       
         # interquartile range calculation
         # todo: make this into a function
 
@@ -142,14 +143,16 @@ def analyze_many(directory_values):
 def analyze_total(directory_number):
     # directory_path = 'D:/acp_data/data_from_Atlas/seac/sacred/' + str(directory_number) + '/'
     directory_path = 'C:/source/seac/seac/results/sacred/' + str(directory_number) + '/'
+    # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/"+ str(directory_number) +"/"
     metrics_data = open_file(directory_path,"metrics.json")
     config_data = open_file(directory_path, 'config.json')
-
+    print(metrics_data.keys())
     check_list = np.array(metrics_data['episode_reward']['values'])
     nonzero_index = list(np.nonzero(check_list)[0])
-    print(nonzero_index)
+    # print(nonzero_index)
     name, num = extract_config_data(config_data)
     data = transform_dataframe(metrics_data, num)
+    print(data.head())
     plt.figure(0)
     sns.lineplot(data=data, x='steps', y='episode_reward')
     title = 'total rewards for ' + name + ' SEAC alg'
@@ -160,8 +163,8 @@ def analyze_total(directory_number):
 if __name__ == '__main__':
     
     sns.set_theme(style='darkgrid')
-    analyze_total(27)
-    # directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
+    analyze_total(3)
+    directory_path = "C:/Users/Peter/Documents/source/repos/acp/seac/results/sacred/4/"
 
 
 
