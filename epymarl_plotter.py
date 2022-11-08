@@ -13,7 +13,7 @@ def open_file(path):
     return loaded_dictionary
 
 
-def plot_means_of_many_runs(run_array, path_array, label_array):
+def plot_means_of_many_runs(run_array, path_array, label_array, plot_info = ('title', 'training episodes', 'normalized reward')):
     '''
 
     '''
@@ -30,12 +30,31 @@ def plot_means_of_many_runs(run_array, path_array, label_array):
     for run_index, run in enumerate(run_array):
 
         #set up the path string 
-
+        
         #open the file at the path
         mean, se = get_mean_var_data(run, path_array[run_index])
         # each array in se is the se of a whole batch of runs, 
         # i need to square all values in the array, and average those, then sqrt them to get SE
-        print('single standard error',se[0])
+        min_len = len(mean[0])
+        # TODO: october 1 i have to cut down all the sizes to be the same. .
+        # need to check if the sizes are all the same: 
+        for data in range(len(mean)):
+            # this loop finds the min 
+            print(data, len(mean[data]))
+            if min_len > len(mean[data]): 
+                min_len = len(mean[data])
+        
+        print('min len',min_len)
+        
+        for data in range(len(mean)):
+            # this loop cuts stuff down
+            length = len(mean[data])
+            diff = length - min_len
+            for i in range(diff):
+                mean[data].pop()
+                se[data].pop()
+
+             
         np_se = np.array(se)
         # turn into variance 
         np_se = np.square(np_se)
@@ -44,9 +63,9 @@ def plot_means_of_many_runs(run_array, path_array, label_array):
         #make standard error 
         np_se = np.sqrt(np_se)
         np_se = np_se * (1/sqrt(the_len))
-        print("before", np_se)
+        # print("before", np_se)
         np_se = np_se * 1.96
-        print('average standard error', np_se)
+        # print('average standard error', np_se)
         # get the mean, min and max values from the mean 
         np_mean = np.array(mean)
         
@@ -61,6 +80,7 @@ def plot_means_of_many_runs(run_array, path_array, label_array):
         run_means.append(np_means)
         run_mins.append(np_min)
         run_maxs.append(np_max)
+
     
     
     # plotting now 
@@ -71,9 +91,9 @@ def plot_means_of_many_runs(run_array, path_array, label_array):
         plt.plot(run, colors[index])
         plt.fill_between(x_len, run_mins[index], run_maxs[index], facecolor=colors[index], alpha=0.3)
     
-    plt.title('Results of 16x16-4p-3f with varied max steps')
-    plt.xlabel('training episodes')
-    plt.ylabel('normalized reward')
+    plt.title(plot_info[0])
+    plt.xlabel(plot_info[1])
+    plt.ylabel(plot_info[2])
     plt.legend(label_array)
     plt.show()
  
@@ -91,7 +111,7 @@ def get_mean_var_data(array_of_experiments, base_path):
         
         means.append(data['return_mean']['values'])
         std.append(data['return_std']['values'])
-        
+
     
     return means, std 
 
@@ -243,25 +263,121 @@ if __name__ == '__main__':
     # sns.set_palette("bright")
     sns.set_palette("Set2")
     atlas_data_path = 'D:/atlas_DADA/'
+    atlas_data_path2 = 'E:/uncorrupted_atlas_data/sacred/'
     molly_data_path = 'C:/source/atpeterepymarl/src/results/sacred/'
-    # experiment_list = [range(152,181),range(192,221), range(41,70)]
-    experiment_list=range(152,181)
-    path_list = [molly_data_path,molly_data_path,molly_data_path]
-    lable_list = ['iql - 215 steps','iql - 100 steps', 'iql - 50 steps']
-    disjointed_array  = [[458, 460,462,469,474,477,483,484,485],[464,465,466,470,475,476,479,481,486], [459,461,467,468,471,473,478,482,487]]
     
-    lables = ['Agent 0 - MADDPG','Agent 0 - vdn', 'Agent 0 - iql', 'Agent 0 - QMIX', 'Agent 1 - MADDPG' ,'Agent1 vdn', 'Agent 1 iql', 'Agent 1 QMIX' ]
+    
+    '''
+    16x16-4f-6f 
+    '''
+    # steps50 =[[500],[502],[503],range(505,521)]
+    # steps50 = collect_data_ranges(steps50)
+    # print(len(steps50))
+    # steps100 = collect_data_ranges([[541],range(543,549),range(550,562)])
+    # print(len(steps100))
+    # steps215 = collect_data_ranges([range(568,583),range(584,588)])
+    # print(len(steps215))
+    # experiment_list = [steps50, steps100, steps215]
+    # path_list = [molly_data_path, molly_data_path, molly_data_path]
+    # lable_list = ['iql - 50 steps', 'iql - 100 steps ', 'iql - 215 steps']
+    # plot_info_tuple = ('Foraging-16x16-4p-6f-v1', 'training episodes', 'normalized reward')
+   
+    
+    '''
+    Plotting experiment 1 data:
+    '''
+    
+    '''
+    Foraging-8x8-3p-1f-coop-v1
+    '''
+    # experiment_list = [[433, 434, 435, 436, 437, 438, 451, 452, 453, 454, 455, 456, 487, 488, 489, 490, 491, 492, 571, 572, 573, 574, 575, 576],
+    # [439, 440, 441, 442, 443, 444, 457, 458, 459, 460, 461, 462, 493, 494, 495, 496, 497, 498, 565, 566, 567, 568, 569, 570]
+    # ]
+    # path_list = [atlas_data_path2,atlas_data_path2]
+    # lable_list =['Qmix','IQL']
+    # plot_info_tuple = ('Foraging-8x8-3p-1f-coop-v1', 'training episodes', 'normalized reward')
+
+    '''
+    Foraging-8x8-2p-3f-v1
+    '''
+    # experiment_list = []
+    # path_list = []
+    # lable_list =[]
+
+    '''Foraging-8x8-2p-2f-coop-v1'''
+    experiment_list = [range(292,297),range(349,354),range(316, 321),range(355,360)]
+    path_list = [molly_data_path, atlas_data_path2,atlas_data_path2,atlas_data_path2]
+    lable_list =['Maddpg', 'VDN', 'Qmix', 'IQL']
+    plot_info_tuple = ('Foraging-8x8-2p-2f-coop-v1', 'training episodes', 'normalized reward')
+ 
+    '''Foraging-10x10-2p-8f-v1'''
+    
+    # experiment_list = [range(322,351),
+    # [226, 227, 228, 229, 230, 231, 244, 245, 246, 247, 248, 249, 280, 281, 292, 293, 294, 295, 296, 297, 304, 305, 306, 307, 308, 309, 535, 536, 537],
+    # [238, 239, 240, 241, 242, 243, 274, 275, 276, 277, 278, 279, 286, 287, 288, 289, 290, 291, 298, 299, 300, 301, 302, 303, 529, 530, 531, 532, 533]]
+    # for i in experiment_list:
+    #     print(len(i))
+    # path_list = [molly_data_path,atlas_data_path2, atlas_data_path2]
+    # lable_list =['Maddpg','VDN','IQL']
+    # plot_info_tuple = ('Foraging-10x10-2p-8f-v1', 'training episodes', 'normalized reward')
+
+    '''Foraging-2s-8x8-2p-3f-v1'''
+    # vdn = collect_data_ranges([range(148,153),range(166,171),range(196,201),range(208,213),range(220,225)])
+    # iql = collect_data_ranges([range(142,147), range(160, 165), range(190,195), range(202,207), range(214,219)])
+    # experiment_list = [vdn, iql]
+    # path_list = [atlas_data_path,atlas_data_path]
+    # lable_list =['VDN','IQL']
+    # plot_info_tuple = ('Foraging-2s-8x8-2p-2f-v1', 'training episodes', 'normalized reward')
+
+    '''Foraging-15x15-4p-5f'''
+    for i in range(1, 5):
+        print(range(1,5))
+        print(i)
+    qmix = [608, 609, 610, 614, 617]
+    print(len(qmix))
+    maddpg = [618, 620, 621, 622, 627]
+    print(len(maddpg))
+    vdn = [619, 623, 624, 625, 626]
+    print(len(vdn))
+    iql = [611, 612, 613, 615, 616]
+    print(len(iql))
+    experiment_list = [qmix,maddpg, iql, vdn]
+    path_list= [molly_data_path,molly_data_path,molly_data_path,molly_data_path]
+    lable_list=['QMIX','MADDPG','IQL', 'VDN ']
+    plot_info_tuple = ('Foraging-15x15-4p-5f ; averaged over 5 runs, confidence interval is z score', 'training episodes', 'normalized reward')
+
+
+    '''
+    experiment 2 plots
+    '''
+    
+    '''
+    Foraging-8x8-2p-3f-v1
+    '''
+    # experiment_list = [range(595,600),range(577,582), range(601,606),range(589,594)]
+    # path_list = [atlas_data_path2,atlas_data_path2,atlas_data_path2,atlas_data_path2]
+    # lable_list =['mappo','ippo','maa2c','coma']
+    # plot_info_tuple = ('Foraging-8x8-2p-3f-v1', 'training episodes', 'normalized reward')
+
+
+    plot_means_of_many_runs(experiment_list, path_list,lable_list,plot_info_tuple)
+   
+    '''
+    Deprecated code for reference:
+    '''
+
+    # disjointed_array  = [[458, 460,462,469,474,477,483,484,485],[464,465,466,470,475,476,479,481,486], [459,461,467,468,471,473,478,482,487]]
+    
+    # lables = ['Agent 0 - MADDPG','Agent 0 - vdn', 'Agent 0 - iql', 'Agent 0 - QMIX', 'Agent 1 - MADDPG' ,'Agent1 vdn', 'Agent 1 iql', 'Agent 1 QMIX' ]
     # lables = []
 
 
     # plot_means_of_many_runs(experiment_list, path_list,lable_list)
-    plot_means_of_many_runs(disjointed_array, path_list,lable_list)
+    # plot_means_of_many_runs(experiment_list, path_list,lable_list)
     # means, var = get_mean_var_data(experiment_list,base_path)
     
     # plot_many_means(experiment_list, lables)
     # plot_individual_agent_values(experiment_list,lables, 2)
-    
-   
     # data_dict = open_file(path)
     # print(data_dict.keys())
     # # print(data_dict['return_std'])
@@ -282,3 +398,6 @@ if __name__ == '__main__':
     # plt.xlabel('Update (in million steps)')
     
     # plt.show()
+
+
+    
