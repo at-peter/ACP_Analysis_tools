@@ -1,5 +1,4 @@
-import pandas as pd 
-import seaborn as sns 
+
 import os 
 import json 
 import yaml
@@ -11,8 +10,9 @@ number  - the directory number
 '''
 
 def __main():
-    path_to_hyperparameter_search = 'datasets\hyperparameter seach qmix 10x10'   
-    algo = 'qmix' 
+    # path_to_hyperparameter_search = 'C:/source/atpeterepymarl/src/results/qtran_regular_hs'
+    path_to_hyperparameter_search = 'C:/source/atpeterepymarl/src/results/8X8IQLHS'
+    algo = 'IQL'
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     
@@ -33,6 +33,9 @@ def __main():
 
 
     for dir in list_of_dirs:
+        if dir == '_sources':
+            #skip the sources directory
+            continue
         path_to_metrics = path_to_hyperparameter_search + '\\' + str(dir) + '\\' + 'metrics.json'
         # load the metrics file 
         with open(path_to_metrics) as f: 
