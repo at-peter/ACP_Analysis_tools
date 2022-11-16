@@ -10,9 +10,9 @@ number  - the directory number
 '''
 
 def __main():
-    # path_to_hyperparameter_search = 'C:/source/atpeterepymarl/src/results/qtran_regular_hs'
-    path_to_hyperparameter_search = 'C:/source/atpeterepymarl/src/results/8X8IQLHS'
-    algo = 'IQL'
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix/qmix_8x8_hs_2"   
+    # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
+    algo = 'qmix' 
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     
@@ -41,12 +41,14 @@ def __main():
         with open(path_to_metrics) as f: 
             loaded_dict = json.load(f)
         # grab the last value from the means 
-        last_value_dictionary[dir] = loaded_dict['return_mean']['values'][-1]
+        last_value_dictionary[int(dir)] = loaded_dict['return_mean']['values'][-1]
         
     print(last_value_dictionary)
     # find max value from the dictionary 
     fin_max = max(last_value_dictionary, key = last_value_dictionary.get)
+    duplicate_max = max(last_value_dictionary.items(), key= lambda i: i[::-1])
     print("Max value", fin_max)
+    print('duplicate values', duplicate_max)
     # fin_max is the directory number, now you can get the hyperparameters for it:
     path_to_config = path_to_hyperparameter_search + '\\' + str(fin_max) + '\\' + 'config.json'
     
