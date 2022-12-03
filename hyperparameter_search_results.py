@@ -50,8 +50,8 @@ def extract_configs(path_to_directory, directory_number):
     return load_config 
 
 def __main():
-    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix/qmix_8x8_hs_2"   
-    path_to_second_hs_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/vdn/vdn_8x8_hs_2"   
+    # path_to_second_hs_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
     # path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
     algo = 'qmix' 
@@ -60,7 +60,7 @@ def __main():
     # list_of_dirs = os.listdir(path_to_second_hs_search)
     
     last_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search,'return_mean')
-    last_value_dictionary_2 = extract_last_value_from_metrics_for_a_search(path_to_second_hs_search,'return_mean')
+    
     
     # last_std_value_dictionary = extract_last_value_from_metrics_for_a_search()
     
@@ -101,15 +101,11 @@ def __main():
     fin_max = max(last_value_dictionary, key = last_value_dictionary.get)
     value_max = last_value_dictionary[fin_max]
 
-    second_max = max(last_value_dictionary_2, key = last_value_dictionary.get)
-    second_max_value = last_value_dictionary[fin_max]
     
-    ##### double check the max is the same: 
-    if value_max == second_max_value:
-        print('Max values are the same')
+ 
     
-    # print("Max value", fin_max)
-    # print("max value", last_value_dictionary[fin_max])
+    print("Max value", fin_max)
+    print("max value", last_value_dictionary[fin_max])
 
     ##################### dictionary reversal ################
 
@@ -124,24 +120,21 @@ def __main():
     for key, value in last_value_dictionary.items():
         rev_dict.setdefault(value, set()).add(key)
 
-    rev_dict2 = {}
-    for key, value in last_value_dictionary_2.items():
-        rev_dict2.setdefault(value, set()).add(key)
+    
     
 # to get the values that are associated with each duplicate, i simply enter the value, 
 # since I have the max value, 
     config_array = []
     duplicate_entries = rev_dict[value_max]# these are a set 
     print('Duplicate entries', duplicate_entries)
-    duplicate_entries_2 = rev_dict2[value_max]
+    
 
     
     for i in duplicate_entries:
         # print(i)
         config_array.append(extract_configs(path_to_hyperparameter_search, i))  
     
-    for i in duplicate_entries_2:
-        config_array.append(extract_configs(path_to_second_hs_search,i))
+   
 
     # print(config_array)
 
@@ -152,9 +145,9 @@ def __main():
     ###################### This copies the best run configs and outputs them as a config #######
 
     duplicate_entries = list(duplicate_entries)
-    duplicate_entries_2 = list(duplicate_entries_2)
+   
 
-    full_list = duplicate_entries + duplicate_entries_2
+    full_list = duplicate_entries 
     print(full_list)
 
     load_config = extract_configs(path_to_hyperparameter_search, fin_max)
@@ -185,7 +178,7 @@ def __main():
             dif = DeepDiff(config_array[j], config_array[i]) 
             if not dif: 
                 print(full_list[j],full_list[i], ' are the same' )
-            print('Root', full_list[j], 'compare', full_list[i])
+            # print('Root', full_list[j], 'compare', full_list[i])
             # pp.pprint(dif.affected_root_keys)
     
     

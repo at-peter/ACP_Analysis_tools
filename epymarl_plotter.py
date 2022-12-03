@@ -8,6 +8,9 @@ from matplotlib import pyplot as plt
 
 
 def open_file(path):
+    '''
+    This function opens the json in the path and returns it as a dictionary 
+    '''
     with open(path) as f:
         loaded_dictionary = json.load(f)
     return loaded_dictionary
