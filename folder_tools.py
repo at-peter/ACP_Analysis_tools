@@ -107,7 +107,28 @@ def sort_results_by_environment(path_to_results,list_of_environments):
                     print('destination', destination)
                     move_files(source, destination)
         except FileNotFoundError:
-            print('not the right directory ')
+            print(path_to_config, 'not the right directory ')
+
+
+def change_config_name(master_config, target_directory, new_name):
+    """
+    This method changes the name of config files in the target_directory if they match the master config
+    """
+    import deepdiff
+
+    # need to open the master config
+
+    # need to navigate to the target directory.
+    import json
+    os.chdir(target_directory)
+    dir_list = os.listdir()
+    print(os.getcwd())
+
+    # get rid of sources
+    y = max(dir_list)
+    dir_list.remove(y)
+    print(dir_list)
+
 
 
 def _main():
@@ -118,12 +139,16 @@ def _main():
     # path2 = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/vdn/vdn_8x8_hs_2'
     
     # copy_folder(path1, path2)
-    path_to_results = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/ihateeverything/'
+    # path_to_results = 'C:/Users/Wintermute/Desktop/best_configs/mappo_best/'
+    path_to_results ='C:/Users/Wintermute/Desktop/lbf data collection/ia2c_data_collection_real/'
     list_of_envs = [
         'Foraging-10x10-3p-3f-v2',
         'Foraging-2s-10x10-3p-3f-v2',
         'Foraging-8x8-2p-2f-coop-v2',
-        'Foraging-2s-8x8-2p-2f-coop-v2'
+        'Foraging-2s-8x8-2p-2f-coop-v2',
+        'Foraging-15x15-3p-5f-v2',
+        'Foraging-15x15-4p-3f-v2',
+        'Foraging-15x15-4p-5f-v2'
     ]
     sort_results_by_environment(path_to_results,list_of_envs)
     # "env_args": {

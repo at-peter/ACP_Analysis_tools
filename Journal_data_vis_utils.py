@@ -22,7 +22,9 @@ def open_file(path):
 def _main():
 
     value_array = []
-    main_path = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/ihateeverything/Foraging-10x10-3p-3f-v2/'
+    main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_best/Foraging-2s-8x8-2p-2f-coop-v2/'
+    # main_path = 'C:/Users/Wintermute/Desktop/sorting experiments/'
+    title = main_path.split('/')[-2] + ' ' + main_path.split('/')[-3]
     os.chdir(main_path)
     dir_list = os.listdir()
     # list_of_paths = [main_path + '1']
@@ -44,6 +46,7 @@ def _main():
         x = range(len(i))
         plt.plot(x,i,label= e)
         plt.legend()
+    plt.title(title)
     plt.show()
 
 
