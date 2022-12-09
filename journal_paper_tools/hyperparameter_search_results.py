@@ -34,8 +34,13 @@ def extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 
         path_to_metrics = path_to_hyperparameter_search + '\\' + str(dir) + '\\' + 'metrics.json'
         # load the metrics file 
         with open(path_to_metrics) as f: 
-            loaded_dict = json.load(f)
-        # grab the last value from the means 
+            try:
+                loaded_dict = json.load(f)
+            except:
+                print("Dir ",dir, " has problems")
+
+
+        # grab the last value from the means
         last_value_dictionary[int(dir)] = loaded_dict[info_key]['values'][-1]
 
     return last_value_dictionary
@@ -50,17 +55,23 @@ def extract_configs(path_to_directory, directory_number):
     return load_config 
 
 def __main():
-    path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qtran_regular_hs"   
-    
-    # path_to_second_hs_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
-    # path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
+    """
+    This code is used to go through the hyperparameter search directory get the final mean return values, and create a
+    list of configs that are in first place.
+    """
+    #### WHEN ON MOLLY #####
+    # path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qtran_regular_hs"
+
+
+    ###### When on Wintermute
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ippo_10x10_test"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
-    algo = 'qtran' 
+    algo = 'ippo'
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     # list_of_dirs = os.listdir(path_to_second_hs_search)
     
-    last_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search,'return_mean')
+    last_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_mean')
     
     
     # last_std_value_dictionary = extract_last_value_from_metrics_for_a_search()
@@ -99,7 +110,7 @@ def __main():
 
 
     # find max value from the dictionary 
-    fin_max = max(last_value_dictionary, key = last_value_dictionary.get)
+    fin_max = max(last_value_dictionary, key=last_value_dictionary.get)
     value_max = last_value_dictionary[fin_max]
 
     

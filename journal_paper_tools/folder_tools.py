@@ -117,21 +117,21 @@ def _main():
     # path1 = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix/qmix_8x8_hs_2'
     # path2 = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix/qmix_8x8_hs_realone'
     # base_path = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8'
-    source = 'C:/source/atpeterepymarl/src/results/the_other_qtran'
-    destination = 'C:/source/atpeterepymarl/src/results/qtran_regular_hs'
-    
-    copy_folder(source, destination)
+    # source = 'C:/source/atpeterepymarl/src/results/the_other_qtran'
+    # destination = 'C:/source/atpeterepymarl/src/results/qtran_regular_hs'
+    #
+    # copy_folder(source, destination)
 
 
     ##### Sort by environments #########
-    # path_to_results = 'C:/Users/Wintermute/Desktop/hyperparameter search 8x8/ihateeverything/'
-    # list_of_envs = [
-    #     'Foraging-10x10-3p-3f-v2',
-    #     'Foraging-2s-10x10-3p-3f-v2',
-    #     'Foraging-8x8-2p-2f-coop-v2',
-    #     'Foraging-2s-8x8-2p-2f-coop-v2'
-    # ]
-    # sort_results_by_environment(path_to_results,list_of_envs)
+    path_to_results = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/'
+    list_of_envs = [
+        'Foraging-10x10-3p-3f-v2',
+        'Foraging-2s-10x10-3p-3f-v2',
+        'Foraging-8x8-2p-2f-coop-v2',
+        'Foraging-2s-8x8-2p-2f-coop-v2'
+    ]
+    sort_results_by_environment(path_to_results, list_of_envs)
     
 
 if __name__ == '__main__':
