@@ -50,8 +50,9 @@ def extract_configs(path_to_directory, directory_number):
     return load_config 
 
 def __main():
-    path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qtran_regular_hs"   
-    
+    # path_to_hyperparameter_search = "C:/Users/molly/Desktop/qtran_hyperparameter_test_10x10_3p_3f" 
+    # C:\source\atpeterepymarl\src\results\qtran_regular_hs
+    path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qtran_regular_hs"  
     # path_to_second_hs_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
     # path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/qmix//qmix_8x8_hs_realone"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
