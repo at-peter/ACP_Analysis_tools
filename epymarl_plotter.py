@@ -248,6 +248,7 @@ def get_individual_agent_mean_var_data():
     '''
     This function wi
     '''
+
 def collect_data_ranges(disjointed_data_array):
     '''
     This is for many disjointed obvious sections
