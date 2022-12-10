@@ -4,6 +4,7 @@ import json
 import yaml
 from deepdiff import DeepDiff 
 import pprint
+import statistics
 '''
 This scanner will need to get the following values:
 results - final step load then use [-1]
@@ -41,7 +42,13 @@ def extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 
 
 
         # grab the last value from the means
-        last_value_dictionary[int(dir)] = loaded_dict[info_key]['values'][-1]
+        last_30_values = loaded_dict[info_key]['values'][-30:-1]
+        total_max_value = max(loaded_dict[info_key]['values'])
+        mean_of_last_30_values = statistics.mean(last_30_values)
+        # last_value_dictionary[int(dir)] = loaded_dict[info_key]['values'][-1]
+        last_value_dictionary[int(dir)] = mean_of_last_30_values
+        last_value_dictionary[int(dir)] = total_max_value
+
 
     return last_value_dictionary
 
@@ -64,69 +71,31 @@ def __main():
 
 
     ###### When on Wintermute
-    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ippo_10x10_test"
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/iql_10x10_hs"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
-    algo = 'ippo'
+    algo = 'iql'
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     # list_of_dirs = os.listdir(path_to_second_hs_search)
     
     last_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_mean')
+    last_test_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'test_return_mean')
+    # TODO December 09 2022, grab more than just means.
     
-    
-    # last_std_value_dictionary = extract_last_value_from_metrics_for_a_search()
-    
-
-    ########## TESTING SINGLE ENTRY CODE ###################
-    # print(list_of_dirs)
-    # dir = list_of_dirs[0]
-    # path_to_metrics = path_to_hyperparameter_search + '\\' + str(dir) + '\\' + 'metrics.json'
-    # print(path_to_metrics)
-    # # Load the metrics file 
-    # with open(path_to_metrics) as f:
-    #     loaded_dict = json.load(f)
-    
-    # print(loaded_dict.keys())
-    # last_value_dictionary[dir] = loaded_dict['return_mean']['values'][-1]
-    # fin_max = max(last_value_dictionary, key = last_value_dictionary.get)
-
-    ######### TESTING SINGLE ENTRY CODE END ################
-
-
-    # TODO:  this needs to be turned into a function so I can make sure the return_mean 
-    # for dir in list_of_dirs:
-    #     if dir == '_sources':
-    #         #skip the sources directory
-    #         continue
-    #     path_to_metrics = path_to_hyperparameter_search + '\\' + str(dir) + '\\' + 'metrics.json'
-    #     # path_to_metrics = path_to_second_hs_search + '\\' + str(dir) + '\\' + 'metrics.json'
-    #     # load the metrics file 
-    #     with open(path_to_metrics) as f: 
-    #         loaded_dict = json.load(f)
-    #     # grab the last value from the means 
-    #     last_value_dictionary[int(dir)] = loaded_dict['return_mean']['values'][-1]
-        
-    # print(last_value_dictionary)
-
-
-    # find max value from the dictionary 
+    last_std_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_std')
+    # find max value from the dictionary
     fin_max = max(last_value_dictionary, key=last_value_dictionary.get)
     value_max = last_value_dictionary[fin_max]
-
     
- 
-    
-    print("Max value", fin_max)
+    print("Max value index", fin_max)
     print("max value", last_value_dictionary[fin_max])
+    print('max value std', last_std_value_dictionary[fin_max])
+    print("max test value", last_test_value_dictionary[fin_max])
 
-    ##################### dictionary reversal ################
+    print("Finding any duplicate entries")
 
-    # Python code to demonstrate 
-    # finding duplicate values from dictionary
-    from itertools import chain
-    
-   
-    # ########### finding duplicate values
+
+    # ########### finding duplicate values ##################
     # ########### from dictionary using set
     rev_dict = {}
     for key, value in last_value_dictionary.items():
@@ -139,20 +108,9 @@ def __main():
     config_array = []
     duplicate_entries = rev_dict[value_max]# these are a set 
     print('Duplicate entries', duplicate_entries)
-    
 
-    
     for i in duplicate_entries:
-        # print(i)
-        config_array.append(extract_configs(path_to_hyperparameter_search, i))  
-    
-   
-
-    # print(config_array)
-
-
-    # now that we have the list of these dictionaries 
-
+        config_array.append(extract_configs(path_to_hyperparameter_search, i))
 
     ###################### This copies the best run configs and outputs them as a config #######
 
