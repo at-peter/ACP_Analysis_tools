@@ -109,6 +109,49 @@ def sort_results_by_environment(path_to_results,list_of_environments):
         except FileNotFoundError:
             print('not the right directory ')
 
+def sort_results_by_name(path_to_results,list_of_names):
+    """
+    This function sorts a results directory by environment. This is useful when you have a bunch of environments in a
+    single results directory.
+    """
+    import json
+    os.chdir(path_to_results)
+    dir_list = os.listdir()
+    print(os.getcwd())
+
+    # get rid of sources 
+    y = max(dir_list)
+    dir_list.remove(y)
+    print(dir_list)
+    # create directories for each of the 
+    for env in list_of_names:
+        # print(env)
+        try:
+            os.makedirs(env)
+        except:
+            print("Already created")
+    
+    #now i go through each directory, 
+    for dir in dir_list:
+    # open the config file
+        path_to_config = path_to_results  + '/' +str(dir) + '/config.json'
+        print('path to config', path_to_config)
+        try:
+            with open(path_to_config) as f:
+                loaded_dict = json.load(f)
+            dir_name = loaded_dict['name']
+            print('Loaded name', dir_name)
+            for name in list_of_names:
+                print('evaluating name', name)
+                if dir_name == name:
+                    # move dir into the folder that is responsible for it
+                    source = path_to_results + '/' + str(dir)
+                    destination = path_to_results + '/' + str(name) +'/'+  str(dir)
+                    print('source', source)
+                    print('destination', destination)
+                    move_files(source, destination)
+        except FileNotFoundError:
+            print('not the right directory ')
 
 def _main():
     
@@ -124,14 +167,24 @@ def _main():
 
 
     #### Sort by environments #########
-    path_to_results = "C:/source/atpeterepymarl/src/results/qtran_best_configs/"
+    path_to_results = "C:/source/atpeterepymarl/src/results/iql_10x10_best_real/"
+    
     list_of_envs = [
         'Foraging-10x10-3p-3f-v0',
         'Foraging-2s-10x10-3p-3f-v0',
         'Foraging-8x8-2p-2f-coop-v0',
         'Foraging-2s-8x8-2p-2f-coop-v0'
     ]
-    sort_results_by_environment(path_to_results,list_of_envs)
+    list_of_names = [
+        'iql_best_conf_0',
+        'iql_best_conf_1'
+    ]
+    for env in list_of_envs:
+        path_to_env = path_to_results + env
+        print(env)
+        sort_results_by_name(path_to_env, list_of_names)
+    
+    # sort_results_by_environment(path_to_results,list_of_envs)
     
 
 if __name__ == '__main__':
