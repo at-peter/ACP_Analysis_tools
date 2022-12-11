@@ -11,8 +11,7 @@ Made to fix a problem i created for myself by dumpting to json rather than to ya
 
 def create_json_configs(list_of_configs, folder_path, alg):
     for i, e in enumerate(list_of_configs):
-        path = folder_path + e + '/config.json'
-        print(path)
+        path = folder_path + '/' + str(e) + '/config.json'
         json_data = json.load(open(path))
         #### set the name
         name = alg + '_best_conf_' + str(i)
@@ -30,12 +29,17 @@ def compare_hyperparameters():
 
 def __main():
     list_of_configs = [
-        '142',
-        '225'
+        # IQL confs
+        # '142',
+        # '225'
+        # Ippo confs:
+        193,
+        98,
+        112
     ]
 
-    folder_path = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/iql_10x10_hs/"
-    alg = 'iql'
+    folder_path = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ippo_10x10_test"
+    alg = 'ippo'
     create_json_configs(list_of_configs,folder_path,alg)
 
 
