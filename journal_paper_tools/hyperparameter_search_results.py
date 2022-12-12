@@ -27,6 +27,8 @@ def extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 
 
     """
     last_value_dictionary = {}
+    last_30_value_dictionary = {}
+    last_max_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     for dir in list_of_dirs:
         if dir == '_sources':
@@ -45,12 +47,17 @@ def extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 
         last_30_values = loaded_dict[info_key]['values'][-30:-1]
         total_max_value = max(loaded_dict[info_key]['values'])
         mean_of_last_30_values = statistics.mean(last_30_values)
-        # last_value_dictionary[int(dir)] = loaded_dict[info_key]['values'][-1]
-        last_value_dictionary[int(dir)] = mean_of_last_30_values
-        last_value_dictionary[int(dir)] = total_max_value
 
+        #### just the last value #####
+        last_value_dictionary[int(dir)] = loaded_dict[info_key]['values'][-1]
 
-    return last_value_dictionary
+        ###### last 30 values #####
+        last_30_value_dictionary[int(dir)] = mean_of_last_30_values
+
+        ## the biggest value of all ####
+        last_max_value_dictionary[int(dir)] = total_max_value
+
+    return last_value_dictionary, last_30_value_dictionary, last_max_value_dictionary
 
 def extract_configs(path_to_directory, directory_number):
 
@@ -71,26 +78,42 @@ def __main():
 
 
     ###### When on Wintermute
-    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/iql_10x10_hs"
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ia2c_10x10_hs"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
-    algo = 'iql'
+    algo = 'ia2c'
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     # list_of_dirs = os.listdir(path_to_second_hs_search)
     
-    last_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_mean')
-    last_test_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'test_return_mean')
+    last_value_dictionary, last_30, last_max = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_mean')
+    last_test_value_dictionary, _, _ = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'test_return_mean')
     # TODO December 09 2022, grab more than just means.
     
-    last_std_value_dictionary = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_std')
+    last_std_value_dictionary, _, _  = extract_last_value_from_metrics_for_a_search(path_to_hyperparameter_search, 'return_std')
     # find max value from the dictionary
     fin_max = max(last_value_dictionary, key=last_value_dictionary.get)
     value_max = last_value_dictionary[fin_max]
-    
+    print("##### Last value #### ")
     print("Max value index", fin_max)
     print("max value", last_value_dictionary[fin_max])
     print('max value std', last_std_value_dictionary[fin_max])
     print("max test value", last_test_value_dictionary[fin_max])
+    print('#########')
+    print('##### last 30 values ')
+    max_30 = max(last_30, key=last_30.get)
+    print("Max value index", max_30)
+    print("max value", last_30[max_30])
+    print('max value std', last_std_value_dictionary[max_30])
+    print("max test value", last_test_value_dictionary[max_30])
+    print('#########')
+    print('##### biggest values ')
+    max_big = max(last_max, key=last_max.get)
+    print("Max value index", max_big)
+    print("max value", last_max[max_big])
+    print('max value std', last_std_value_dictionary[max_big])
+    print("max test value", last_test_value_dictionary[max_big])
+    print('#########')
+
 
     print("Finding any duplicate entries")
 
