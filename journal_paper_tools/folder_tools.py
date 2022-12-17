@@ -115,6 +115,9 @@ def sort_results_by_name(path_to_results,list_of_names):
     single results directory.
     """
     import json
+    print(path_to_results)
+    path_to_results = path_to_results + '/'
+    print(os.getcwd)
     os.chdir(path_to_results)
     dir_list = os.listdir()
     print(os.getcwd())
@@ -167,7 +170,7 @@ def _main():
 
 
     #### Sort by environments #########
-    path_to_results = "C:/source/atpeterepymarl/src/results/iql_10x10_best_real/"
+    path_to_results = "C:/source/atpeterepymarl/src/results/qplex_testings_different_configs/"
     
     list_of_envs = [
         'Foraging-10x10-3p-3f-v0',
@@ -176,15 +179,19 @@ def _main():
         'Foraging-2s-8x8-2p-2f-coop-v0'
     ]
     list_of_names = [
-        'iql_best_conf_0',
-        'iql_best_conf_1'
+        # 'qmix_best_conf_0',
+        # 'qmix_best_conf_1'
+        'qplex_sc2',
+        'qplex_qatten_sc2'
     ]
+    
+    
+    # sort_results_by_environment(path_to_results,list_of_envs)
+
     for env in list_of_envs:
         path_to_env = path_to_results + env
         print(env)
         sort_results_by_name(path_to_env, list_of_names)
-    
-    # sort_results_by_environment(path_to_results,list_of_envs)
     
 
 if __name__ == '__main__':

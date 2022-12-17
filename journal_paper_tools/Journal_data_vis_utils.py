@@ -25,10 +25,11 @@ def _main():
     value_array = []
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-2s-10x10-3p-3f-v2/'
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-10x10-3p-3f-v2/'
-    # main_path = 'C:/Users/Wintermute/Desktop/best_configs/mappo_10x10_best_conf/Foraging-2s-8x8-2p-2f-coop-v2/'
-    main_path = 'C:/Users/Wintermute/Desktop/lbf data collection/qmix_data_collection_real/Foraging-2s-8x8-2p-2f-coop-v2/'
-    # main_path = 'C:/source/atpeterepymarl/src/results/iql_10x10_best_real/Foraging-2s-10x10-3p-3f-v0/iql_best_conf_1/'
-    # C:\Users\Wintermute\Desktop\best_configs\ippo_8x8_best_config_noseed
+    # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-8x8-2p-2f-coop-v2/'
+
+    main_path = 'C:/source/atpeterepymarl/src/results/qplex_testings_different_configs/Foraging-2s-10x10-3p-3f-v0/qplex_qatten_sc2/'
+    # qplex_qatten_sc2
+    # C:\Users\Wintermute\Desktop\best_configs\ippo_8x8_best_config_noseed/Foraging-2s-8x8-2p-2f-coop-v0
 
     name = main_path.split('/')[-2] + ' ' + main_path.split('/')[-3]
     os.chdir(main_path)

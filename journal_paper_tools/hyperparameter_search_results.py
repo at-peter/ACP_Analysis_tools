@@ -74,11 +74,11 @@ def __main():
     list of configs that are in first place.
     """
     #### WHEN ON MOLLY #####
-    # path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qtran_regular_hs"
+    path_to_hyperparameter_search = "C:/source/atpeterepymarl/src/results/qplex_testing_different_configs/"
 
 
     ###### When on Wintermute
-    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ia2c_10x10_hs"
+    # path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ia2c_10x10_hs"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
     algo = 'ia2c'
     last_value_dictionary = {}
