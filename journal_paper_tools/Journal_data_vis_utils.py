@@ -25,9 +25,9 @@ def _main():
     value_array = []
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-2s-10x10-3p-3f-v2/'
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-10x10-3p-3f-v2/'
-    # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-8x8-2p-2f-coop-v2/'
-
-    main_path = 'C:/source/atpeterepymarl/src/results/iql_10x10_best_real/Foraging-2s-10x10-3p-3f-v0/iql_best_conf_1/'
+    # main_path = 'C:/Users/Wintermute/Desktop/best_configs/mappo_10x10_best_conf/Foraging-2s-8x8-2p-2f-coop-v2/'
+    main_path = 'C:/Users/Wintermute/Desktop/lbf data collection/qmix_data_collection_real/Foraging-2s-8x8-2p-2f-coop-v2/'
+    # main_path = 'C:/source/atpeterepymarl/src/results/iql_10x10_best_real/Foraging-2s-10x10-3p-3f-v0/iql_best_conf_1/'
     # C:\Users\Wintermute\Desktop\best_configs\ippo_8x8_best_config_noseed
 
     name = main_path.split('/')[-2] + ' ' + main_path.split('/')[-3]
@@ -41,7 +41,7 @@ def _main():
         print(path)
         
         metrics_path = main_path + path + '/metrics.json'
-        print(metrics_path)
+        print('metrics path', metrics_path)
         # dataframes[path] = pd.read_json(metrics_path)
         # meow = pd.read_json(metrics_path)
         # print(meow.info())
@@ -68,8 +68,8 @@ def _main():
         plt.legend()
     plt.title(name)
     plt.show()
-
-    print('Mean max value = ', statistics.mean(max_value_array))
+    print(max_value_array)
+    print('max value = ', max(max_value_array))
     print('Mean value', statistics.mean(mean_value_array))
 
 if __name__ == "__main__":
