@@ -27,7 +27,7 @@ def _main():
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-10x10-3p-3f-v2/'
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-8x8-2p-2f-coop-v2/'
 
-    main_path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-8x8-2p-2f-coop-v0/'
+    main_path = 'C:/source/atpeterepymarl/src/results/iql_for_journal/Foraging-8x8-2p-2f-coop-v0/'
     # qplex_qatten_sc2
     # C:\Users\Wintermute\Desktop\best_configs\ippo_8x8_best_config_noseed/Foraging-2s-8x8-2p-2f-coop-v0
 
@@ -69,14 +69,19 @@ def _main():
         plt.legend()
     plt.title(name)
     plt.show()
+
     print(max_value_array)
     print('max value = ', max(max_value_array))
     max_interval = calculate_ninefive_confidence(max_value_array)
     print('Max interval value', max_interval)
+    output_laytex_max_values(max_value_array,max_interval)
 
     print('Mean value', statistics.mean(mean_value_array))
     interval = calculate_ninefive_confidence(mean_value_array)
     print("Mean interval value ", interval)
+    output_laytex_mean_values(mean_value_array,interval)
+
+
  
 
 def calculate_ninefive_confidence(value_array):
@@ -92,6 +97,20 @@ def calculate_ninefive_confidence(value_array):
     interval = statistics.mean(value_array)- nine_five[0] 
 
     return interval
+
+
+def output_laytex_max_values(max_array, max_conf):
+    round_val = round(max(max_array),2)
+    round_conf = round(max_conf,2)
+    output = '$ %s \pm %s $'%(round_val, round_conf)
+    print(output)
+
+def output_laytex_mean_values(mean_array, mean_conf):
+
+    round_val = round(statistics.mean(mean_array),2)
+    round_conf = round(mean_conf,2)
+    output = '$ %s \pm %s $'%(round_val, round_conf)
+    print(output)
 
 if __name__ == "__main__":
     _main()
