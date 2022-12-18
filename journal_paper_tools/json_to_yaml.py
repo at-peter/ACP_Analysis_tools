@@ -31,15 +31,33 @@ def __main():
     list_of_configs = [
         # IQL confs
         # '142',
-        # '225'
-        # Ippo confs:
-        193,
-        98,
-        112
-    ]
+        # '225' - this one 
 
-    folder_path = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ippo_10x10_test"
-    alg = 'ippo'
+        # Ippo confs:
+        # 193,
+        # 98, -this one 
+        # 112
+
+        #QMIX confs:
+        # 211,
+        # 338 - this one 
+
+        #IA2C confs:
+        # 87,
+        # 55 - this one 
+
+        #VDN confs:
+        # 71,
+        # 118 - this one 
+
+        # # MAPPO conf:
+        # 203 #this one 
+        
+        #M
+    ] 
+
+    folder_path = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/mappo_10x10_hs"
+    alg = 'mappo'
     create_json_configs(list_of_configs,folder_path,alg)
 
 

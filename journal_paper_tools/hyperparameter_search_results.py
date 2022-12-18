@@ -78,9 +78,11 @@ def __main():
 
 
     ###### When on Wintermute
-    # path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/ia2c_10x10_hs"
+    path_to_hyperparameter_search = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/mappo_10x10_hs/"
+    # C:\Users\Wintermute\Desktop\hyperparameter search 8x8\maa2c\maa2c_8x8_hs_2
+    # "C:/Users/Wintermute/Desktop/hyperparameter search 8x8/maa2c/maa2c_8x8_hs_2"
     # qmix path 2: C:\Users\Wintermute\Desktop\hyperparameter search 8x8\qmix\qmix_8x8_hs_2
-    algo = 'ia2c'
+    algo = 'mappo'
     last_value_dictionary = {}
     list_of_dirs = os.listdir(path_to_hyperparameter_search)
     # list_of_dirs = os.listdir(path_to_second_hs_search)

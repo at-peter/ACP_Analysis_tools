@@ -170,29 +170,28 @@ def _main():
 
 
     #### Sort by environments #########
-    path_to_results = "C:/source/atpeterepymarl/src/results/qplex_testings_different_configs/"
+    # path_to_results = "C:/source/atpeterepymarl/src/results/iql_10x10_best_real/"
+    path_to_results = 'C:/Users/Wintermute/Desktop/best_configs/mappo_10x10_best_conf/'
     
+    path_to_results = 'C:/Users/Wintermute/Desktop/lbf data collection/qmix_data_collection_real/'
+
     list_of_envs = [
-        'Foraging-10x10-3p-3f-v0',
-        'Foraging-2s-10x10-3p-3f-v0',
-        'Foraging-8x8-2p-2f-coop-v0',
-        'Foraging-2s-8x8-2p-2f-coop-v0'
+        'Foraging-10x10-3p-3f-v2',
+        'Foraging-2s-10x10-3p-3f-v2',
+        'Foraging-8x8-2p-2f-coop-v2',
+        'Foraging-2s-8x8-2p-2f-coop-v2'
     ]
     list_of_names = [
-        # 'qmix_best_conf_0',
-        # 'qmix_best_conf_1'
-        'qplex_sc2',
-        'qplex_qatten_sc2'
+        'qmix_best_conf_0'
     ]
-    
-    
-    # sort_results_by_environment(path_to_results,list_of_envs)
 
-    for env in list_of_envs:
-        path_to_env = path_to_results + env
-        print(env)
-        sort_results_by_name(path_to_env, list_of_names)
     
+    sort_results_by_environment(path_to_results,list_of_envs)
+
+    # for env in list_of_envs:
+    #     path_to_env = path_to_results + env
+    #     print(env)
+    #     sort_results_by_name(path_to_env, list_of_names)
 
 if __name__ == '__main__':
     _main()
