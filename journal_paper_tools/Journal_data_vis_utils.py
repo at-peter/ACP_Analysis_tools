@@ -5,7 +5,7 @@ import json
 import os
 from matplotlib import pyplot as plt
 import statistics
-
+import scipy.stats as st
 
 def open_file(path):
     """
@@ -27,7 +27,7 @@ def _main():
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-10x10-3p-3f-v2/'
     # main_path = 'C:/Users/Wintermute/Desktop/best_configs/ippo_8x8_best_config_noseed/Foraging-8x8-2p-2f-coop-v2/'
 
-    main_path = 'C:/source/atpeterepymarl/src/results/qplex_testings_different_configs/Foraging-2s-10x10-3p-3f-v0/qplex_qatten_sc2/'
+    main_path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-8x8-2p-2f-coop-v0/'
     # qplex_qatten_sc2
     # C:\Users\Wintermute\Desktop\best_configs\ippo_8x8_best_config_noseed/Foraging-2s-8x8-2p-2f-coop-v0
 
@@ -71,7 +71,27 @@ def _main():
     plt.show()
     print(max_value_array)
     print('max value = ', max(max_value_array))
+    max_interval = calculate_ninefive_confidence(max_value_array)
+    print('Max interval value', max_interval)
+
     print('Mean value', statistics.mean(mean_value_array))
+    interval = calculate_ninefive_confidence(mean_value_array)
+    print("Mean interval value ", interval)
+ 
+
+def calculate_ninefive_confidence(value_array):
+    '''
+    This function calculates the 95% confidence interval of an array using the T distribution. 
+    It outputs the +- value 
+    '''
+    
+    nine_five = st.t.interval(confidence=0.95,
+    df=len(value_array)-1,
+    loc=statistics.mean(value_array),
+    scale=st.sem(value_array))
+    interval = statistics.mean(value_array)- nine_five[0] 
+
+    return interval
 
 if __name__ == "__main__":
     _main()
