@@ -19,19 +19,21 @@ def calculate_ninefive_confidence(value_array):
 
 
 list_of_ia2c_paths = [
-    'C:\source\workshop\ia2c_2s-8x8-2p-2f-coop\ia2c_2s-8x8-2p-2f-coop.csv',
+    
     'C:\source\workshop\ia2c_8x8-2p-2f-coop\ia2c_8x8-2p-2f-coop.csv',
+    'C:\source\workshop\ia2c_2s-8x8-2p-2f-coop\ia2c_2s-8x8-2p-2f-coop.csv',
     'C:\source\workshop\ia2c_2s-10x10-3p-3f-v0\ia2c_2s-10x10-3p-3f-v0.csv',
     'C:\source\workshop\ia2c_10x10-3p-3f-v0\ia2c_10x10-3p-3f-v0.csv'
 ]
 
-account = 'qmix'
+account = 'maa2c'
 
 list_of_paths = [
-    'C:/source/workshop/' + account + '_2s-8x8-2p-2f-coop/' + account + '_2s-8x8-2p-2f-coop.csv',
+    
     'C:/source/workshop/' + account + '_8x8-2p-2f-coop/' + account + '_8x8-2p-2f-coop.csv',
+    'C:/source/workshop/' + account + '_2s-8x8-2p-2f-coop/' + account + '_2s-8x8-2p-2f-coop.csv',
+    'C:/source/workshop/' + account + '_10x10-3p-3f-v0/' + account +'_10x10-3p-3f-v0.csv',
     'C:/source/workshop/' + account + '_2s-10x10-3p-3f-v0/' + account + '_2s-10x10-3p-3f-v0.csv',
-    'C:/source/workshop/' + account + '_10x10-3p-3f-v0/' + account +'_10x10-3p-3f-v0.csv'
 ]
 
 # path = 'C:/source/workshop/ia2c_8x8-2p-2f-coop/ia2c_8x8-2p-2f-coop.csv'
