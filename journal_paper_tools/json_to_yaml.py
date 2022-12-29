@@ -54,6 +54,9 @@ def __main():
         # 203 #this one 
         
         #M
+
+        # Qtran lbf
+        241
     ] 
 
     folder_path = "C:/Users/Wintermute/Desktop/hyperparameter search 10x10/mappo_10x10_hs"
