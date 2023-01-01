@@ -8,6 +8,7 @@ import os
 import statistics
 import math 
 import seaborn as sns
+import pandas as pd
 from Journal_data_vis_utils import open_file
 
 
@@ -68,6 +69,8 @@ def compare_two_means(path_to_test_one, path_to_test_two):
     print(x)
     if x['p-val'].item() < 0.05:
         print("Null hypothesis rejected. Pval is ", x['p-val'].item())
+
+
 def get_mean(data_dictionary):
     means = []
     for key in data_dictionary: 
@@ -82,12 +85,57 @@ def get_maxes(data_dictionary):
     
     return maxes
 
+
+def box_plot_between_means(path_to_test_one, path_to_test_two, show=False):
+    
+    
+    data_1 = mean_for_each_timestep(path_to_test_one)
+    data_2 = mean_for_each_timestep(path_to_test_two) 
+    print(len(data_1))
+    print(len(data_2))
+    title = path_to_test_one.split('/')[-2]
+    data_1_name = path_to_test_one.split('/')[-3]
+    data_2_name = path_to_test_two.split('/')[-3]
+    # This is in a dictionary format. To make a boxplot, i need this to be meaned across all the runs in the dictionaty 
+    d = {
+        data_1_name : data_1,
+        data_2_name : data_2
+    }
+    datas = pd.DataFrame(data=d)
+    
+    
+    # plt.boxplot(datas)
+    sns.boxplot(datas)
+    plt.title(title)
+    
+    if show: 
+        plt.show()
+
+def mean_for_each_timestep(path, key=None):
+    datas = []
+    if key: 
+        data = get_all_values_using_key_from_dir_path(path, key)
+    else: 
+        data = get_all_values_using_key_from_dir_path(path)
+    
+    for key in data: 
+        datas.append(data[key])
+    
+    return np.mean(datas, axis=0)
+    
+
+
+
+
 def _main():
-    path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-8x8-2p-2f-coop-v0/'
-    path2= 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-8x8-2p-2f-coop-v0/'
+    # path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-10x10-3p-3f-v0/'
+    path= 'C:/source/atpeterepymarl/src/results/qmix_best_conf_50steps/Foraging-10x10-3p-3f-v0/'
+    # path = 'C:/Users/molly/Desktop/lbf_data/qmix lbf data/Foraging-10x10-3p-3f-v2/'
+    path2 = 'C:/source/atpeterepymarl/src/results/qmix_best_conf_100steps/Foraging-10x10-3p-3f-v0/'
     # plot_histogram(path)
-    compare_two_means(path, path2)
+    # compare_two_means(path, path2)
     # grab the result values for means 
 
+    box_plot_between_two_means(path, path2, show = True)
 if __name__ == "__main__":
     _main()
