@@ -163,6 +163,38 @@ def box_plots_axes(major_path, scenarios, ax):
     return 
 
 
+def box_plots_axes_scenario(major_paths, scenario, ax, maxes = False, parameter='return_mean'):
+    # in this case, the scenario is static and we simply add it to each of the major paths. 
+
+    #
+    datas = []
+    experiments = []
+    for path in major_paths: 
+        # add the right -v to the scenario: 
+        experiments.append(path.split('/')[-2])
+        if path.split('/')[2] ==  'molly':
+            _scenario = scenario + '-v2/'
+        else:
+            _scenario = scenario + '-v0/'
+        
+        # print('scenario data path', scenario ,path + _scenario)
+        if not maxes:
+            datas.append(mean_across_all_runs(path + _scenario))
+        else:
+            datas.append(max_across_all_runs(path + _scenario))
+
+    # print(experiments)   
+    colors = ['pink', 'lightblue', 'lightgreen','orchid' ]
+
+    bplot = ax.boxplot(datas, patch_artist=True)
+    for patch, color in zip(bplot['boxes'],colors):
+        patch.set_facecolor(color)
+    ax.set_title(scenario)
+    ax.set_xticks((1,2,3,4))
+    ax.set_xticklabels(experiments)
+
+
+
 def plot_all_boxplots_for_comparison(path_array, title, show=False):
 
     total = len(path_array)
@@ -196,13 +228,9 @@ def plot_all_boxplots_for_comparison(path_array, title, show=False):
     # set up the major figure and axes: 
     fig, ax = plt.subplots(num_columns , n_rows, sharey=True)
 
-    
-
     plots_ = zip(boxes, path_array )
     for i, (box, path) in enumerate(plots_):
         print(i, box, path)
-        ax[box].set_xticks((1,2,3,4))
-        ax[box].set_xticklabels(['bob','gary', 'foo', 'bar'])
         comp = path.split('/')[2]
         if comp == 'molly':
                 #molly uses v2
@@ -234,6 +262,55 @@ def plot_all_boxplots_for_comparison(path_array, title, show=False):
         plt.show()
 
 
+def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean' ,show=False, maxes=False):
+    '''
+    This function creates a subplot for each scenario. Each subplot contains a box and whisker comparison of all the different experiments fed to the function
+
+    parameters:
+    experiment_paths :: array of paths, paths are str
+    title :: str 
+    parameter_to_plot :: valid parameter to plot from metrics file, str
+    show :: boolean to show plot or not 
+    maxes :: boolean to output analysis of max values rather than mean values. 
+
+    '''
+    scenarios = [
+        'Foraging-8x8-2p-2f-coop',
+        'Foraging-2s-8x8-2p-2f-coop',
+        'Foraging-10x10-3p-3f',
+        'Foraging-2s-10x10-3p-3f'
+    ]
+    # get the number of subplots to make
+    total = len(experiment_paths)
+    num_columns = math.ceil(total / 2)
+    n_rows = 2 
+
+    boxes = []
+    x = range(num_columns)
+    y = range(n_rows)
+    
+    for i in x: 
+        for j in y:
+            boxes.append((i,j))
+    # create the fig and subplot axes 
+    fig, ax = plt.subplots(num_columns , n_rows, sharey=True)
+
+    plots_ = zip(boxes, scenarios)
+
+    for i, (box, scenario) in enumerate(plots_):
+        # print(i, box, scenario, experiment_paths)
+        box_plots_axes_scenario(experiment_paths,scenario, ax[box], maxes=maxes)
+        
+
+    if show:
+        if maxes:
+            fig.suptitle(title + ' maxes '+ parameter_to_plot)
+        else:
+            fig.suptitle(title + ' ' + parameter_to_plot)
+        
+        plt.show()
+
+
 
 def _main():
     # path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-10x10-3p-3f-v0/'
@@ -256,6 +333,7 @@ def _main():
 
 
     # box_plot_between_means(paths, show = True)
-    plot_all_boxplots_for_comparison(big_paths, 'qmix', show= True)
+    # plot_all_boxplots_for_comparison(big_paths, 'qmix', show= True)
+    boxplots_by_scenario(big_paths, 'QMIX response surface between time and reward type',maxes=False ,show=True)
 if __name__ == "__main__":
     _main()
