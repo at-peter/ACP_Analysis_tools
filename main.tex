@@ -1,0 +1,1366 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+%=================================================================
+\documentclass[systems,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal and change "submit" to "accept". The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
+
+%--------------------
+% Class Options:
+%--------------------
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+% acoustics, actuators, addictions, admsci, adolescents, aerospace, agriculture, agriengineering, agronomy, ai, algorithms, allergies, alloys, analytica, animals, antibiotics, antibodies, antioxidants, applbiosci, appliedchem, appliedmath, applmech, applmicrobiol, applnano, applsci, aquacj, architecture, arts, asc, asi, astronomy, atmosphere, atoms, audiolres, automation, axioms, bacteria, batteries, bdcc, behavsci, beverages, biochem, bioengineering, biologics, biology, biomass, biomechanics, biomed, biomedicines, biomedinformatics, biomimetics, biomolecules, biophysica, biosensors, biotech, birds, bloods, blsf, brainsci, breath, buildings, businesses, cancers, carbon, cardiogenetics, catalysts, cells, ceramics, challenges, chemengineering, chemistry, chemosensors, chemproc, children, chips, cimb, civileng, cleantechnol, climate, clinpract, clockssleep, cmd, coasts, coatings, colloids, colorants, commodities, compounds, computation, computers, condensedmatter, conservation, constrmater, cosmetics, covid, crops, cryptography, crystals, csmf, ctn, curroncol, currophthalmol, cyber, dairy, data, dentistry, dermato, dermatopathology, designs, diabetology, diagnostics, dietetics, digital, disabilities, diseases, diversity, dna, drones, dynamics, earth, ebj, ecologies, econometrics, economies, education, ejihpe, electricity, electrochem, electronicmat, electronics, encyclopedia, endocrines, energies, eng, engproc, ent, entomology, entropy, environments, environsciproc, epidemiologia, epigenomes, est, fermentation, fibers, fintech, fire, fishes, fluids, foods, forecasting, forensicsci, forests, foundations, fractalfract, fuels, futureinternet, futureparasites, futurepharmacol, futurephys, futuretransp, galaxies, games, gases, gastroent, gastrointestdisord, gels, genealogy, genes, geographies, geohazards, geomatics, geosciences, geotechnics, geriatrics, hazardousmatters, healthcare, hearts, hemato, heritage, highthroughput, histories, horticulturae, humanities, humans, hydrobiology, hydrogen, hydrology, hygiene, idr, ijerph, ijfs, ijgi, ijms, ijns, ijtm, ijtpp, immuno, informatics, information, infrastructures, inorganics, insects, instruments, inventions, iot, j, jal, jcdd, jcm, jcp, jcs, jdb, jeta, jfb, jfmk, jimaging, jintelligence, jlpea, jmmp, jmp, jmse, jne, jnt, jof, joitmc, jor, journalmedia, jox, jpm, jrfm, jsan, jtaer, jzbg, kidney, kidneydial, knowledge, land, languages, laws, life, liquids, literature, livers, logics, logistics, lubricants, lymphatics, machines, macromol, magnetism, magnetochemistry, make, marinedrugs, materials, materproc, mathematics, mca, measurements, medicina, medicines, medsci, membranes, merits, metabolites, metals, meteorology, methane, metrology, micro, microarrays, microbiolres, micromachines, microorganisms, microplastics, minerals, mining, modelling, molbank, molecules, mps, msf, mti, muscles, nanoenergyadv, nanomanufacturing, nanomaterials, ncrna, network, neuroglia, neurolint, neurosci, nitrogen, notspecified, nri, nursrep, nutraceuticals, nutrients, obesities, oceans, ohbm, onco, oncopathology, optics, oral, organics, organoids, osteology, oxygen, parasites, parasitologia, particles, pathogens, pathophysiology, pediatrrep, pharmaceuticals, pharmaceutics, pharmacoepidemiology, pharmacy, philosophies, photochem, photonics, phycology, physchem, physics, physiologia, plants, plasma, pollutants, polymers, polysaccharides, poultry, powders, preprints, proceedings, processes, prosthesis, proteomes, psf, psych, psychiatryint, psychoactives, publications, quantumrep, quaternary, qubs, radiation, reactions, recycling, regeneration, religions, remotesensing, reports, reprodmed, resources, rheumato, risks, robotics, ruminants, safety, sci, scipharm, seeds, sensors, separations, sexes, signals, sinusitis, skins, smartcities, sna, societies, socsci, software, soilsystems, solar, solids, sports, standards, stats, stresses, surfaces, surgeries, suschem, sustainability, symmetry, synbio, systems, taxonomy, technologies, telecom, test, textiles, thalassrep, thermo, tomography, tourismhosp, toxics, toxins, transplantology, transportation, traumacare, traumas, tropicalmed, universe, urbansci, uro, vaccines, vehicles, venereology, vetsci, vibration, viruses, vision, waste, water, wem, wevj, wind, women, world, youth, zoonoticdis 
+
+%---------
+% article
+%---------
+% The default type of manuscript is "article", but can be replaced by: 
+% abstract, addendum, article, book, bookreview, briefreport, casereport, comment, commentary, communication, conferenceproceedings, correction, conferencereport, entry, expressionofconcern, extendedabstract, datadescriptor, editorial, essay, erratum, hypothesis, interestingimage, obituary, opinion, projectreport, reply, retraction, review, perspective, protocol, shortnote, studyprotocol, systematicreview, supfile, technicalnote, viewpoint, guidelines, registeredreport, tutorial
+% supfile = supplementary materials
+
+%----------
+% submit
+%----------
+% The class option "submit" will be changed to "accept" by the Editorial Office when the paper is accepted. This will only make changes to the frontpage (e.g., the logo of the journal will get visible), the headings, and the copyright information. Also, line numbering will be removed. Journal info and pagination for accepted papers will also be assigned by the Editorial Office.
+
+%------------------
+% moreauthors
+%------------------
+% If there is only one author the class option oneauthor should be used. Otherwise use the class option moreauthors.
+
+%---------
+% pdftex
+%---------
+% The option pdftex is for use with pdfLaTeX. If eps figures are used, remove the option pdftex and use LaTeX and dvi2pdf.
+
+%=================================================================
+% MDPI internal commands
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2022}
+\copyrightyear{2022}
+%\externaleditor{Academic Editor: Firstname Lastname}
+\datereceived{} 
+%\daterevised{} % Only for the journal Acoustics
+\dateaccepted{} 
+\datepublished{} 
+%\datecorrected{} % Corrected papers include a "Corrected: XXX" date in the original paper.
+%\dateretracted{} % Corrected papers include a "Retracted: XXX" date in the original paper.
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+%------------------------------------------------------------------
+% The following line should be uncommented if the LaTeX file is uploaded to arXiv.org
+%\pdfoutput=1
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, lineno, float, amsmath, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, cleveref, amsthm, hyphenat, natbib, hyperref, footmisc, url, geometry, newfloat, caption
+
+%=================================================================
+%% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+% \usepackage[utf8]{inputenc}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{It's All About Reward:\\ Contrasting Joint Rewards and Individual Reward in Centralized Learning Decentralized Execution Algorithms}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{It's All About Reward: Contrasting Joint Rewards and Individual Reward in Centralized Learning Decentralized Execution Algorithms}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0002-2572-529x} % Add \orcidB{} behind the author's name
+\newcommand{\orcidauthorB}{0000-0002-7780-5048} % Add \orcidD{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{
+{Peter Atrazhev} $^{1,}$*\orcidA{}, 
+{Petr Musilek} $^{1}$\orcidB{}}
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Peter Atrazhev, Petr Musilek}
+
+% MDPI internal command: Authors, for citation in the left column
+\AuthorCitation{Atrazhev, P.; Musilek, P.}
+
+% If this is a Chicago style journal: Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Electrical and Computer Engineering, University of Alberta, Edmonton, AB T6G 1H9, Canada}
+
+% Contact information of the corresponding author
+\corres{Correspondence: atrazhev@ualberta.ca}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation 3.} 
+%\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes
+
+%\simplesumm{} % Simple summary
+
+% \conference{what} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{
+This paper addresses the issue of choosing an appropriate reward function in multi-agent reinforcement learning. The traditional approach of using joint reward for team performance is questioned due to the lack of theoretical backing. The authors explore the impact of changing the reward function from joint to individual on centralized learning decentralized execution algorithms in a Level Based Foraging environment. Empirical results reveal that individual rewards contain more variance but may have less bias compared to joint rewards. The findings show that different algorithms are affected differently, with value factorization methods and PPO-based methods taking advantage of the increased variance to achieve better performance. This study sheds light on the importance of considering the choice of reward function and its impact on multi-agent reinforcement learning systems.
+}
+
+% Keywords
+% \keyword{TODO} 
+\keyword{Agent coordination, \and Multi Agent Reinforcement Learning, \and Centralized Learning Decentralized Execution}
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Advances in Respiratory Medicine
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+
+%\noindent This is an obligatory section in “Advances in Respiratory Medicine”, whose goal is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple text allowing the reader to quickly and simplified find out what the article is about and what can be cited from it. Each of these parts should be devoted up to 2~bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What is the implication of the main finding?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ...
+
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\section{Introduction}
+
+MARL is a promising field of AI research and over the last couple of years has seen increasingly more pushes to tackle less "toy" problems (full game environments such as ATARI and SMAC) and instead try to solve complex "real world" problems. 
+% Deployment of MARL systems at large has serious challenges. One more notable challenge is the scaling of resources required for training and execution of all the agents. The amount of compute resources that are necessary for training and execution increases exponentially for multi agent systems due to the curse of dimentionality [cite somewhere for this ]. 
+Coordination of agents across a large state space is a challenging and multi faceted problem, with many approaches that can be used to increase coordination. These include communication between agents, both learned and established, parameter sharing and other methods of imparting additional information in function approximators, and increasing levels of centralization. 
+
+One paradigm of MARL that aims to increase coordination is called \textit{Centralized Learning Decentralized Execution (CLDE)} \cite{Oliehoek2016}. CLDE algorithms train their agent's policies with additional global information using a centralized mechanism. During execution, the centralized element is removed and the agent's policy conditions only on local observations. This has shown to increase coordination of agents \cite{DBLP:Benchmarking}. CLDE algorithms separate into two major categories: centralized policy gradient methods \cite{DBLP:A3C, DBLP:MAPPO, DBLP:maddpg} and value decomposition methods \cite{DBLP:Qmix, sunehag2017vdn}.
+Recently, however there has been work that put into question the assumption that centralized mechanisms do indeed increase coordination. Lyu et. al. \cite{DBLP:contrastingCentralizedDecentralized} found that in actor critic systems the use of a centralized critic lead to an increase in variance seen in the final policy learned, however they noted more coordinated agent behaviour while training and concluded that the use of a centralized critic should be thought of as a choice that carries with it a bias variance trade-off .    
+
+One aspect of agent coordination that is similarly often taken at face value is the use of a joint reward in cooperative systems that use centralization. The assumption is that joint rewards are necessary for coordination of systems that rely on centralization. We have not been able to find a theoretical backing for this claim. The closest works addressing team rewards in cooperative settings that we could find includes works on difference reward which tries to measure the impact of an individual agents actions on the full system reward \cite{tumerdifferencerewards}. The high learnability, among other nice properties makes difference reward attractive but impractical due to the required knowledge of total system state \cite{colby2016local, agogino2008analyzing, proper2012modeling}.
+
+We investigate the effects of changing the reward from a joint reward to a individual reward in the LBF environment. We investigate how different CLDE algorithm performance changes as a result of this change and discuss this performance change.  
+In this work we study the effect of varying reward functions from joint reward to individual reward has on IQL\cite{mnih2015dqn}, IPPO \cite{DBLP:ppo}, IA2C \cite{DBLP:A3C}, MAPPO \cite{DBLP:MAPPO}, MAA2C \cite{DBLP:Benchmarking, DBLP:A3C}, VDN \cite{sunehag2017vdn} and QMIX\cite{DBLP:Qmix} when evaluated on the Level Based Foraging (LBF) environment\cite{LBF} . This environment was chosen as it is a gridworld environment, and therefore simpler to understand when compared to other MARL environments such as those based on the StarCraft environment, however is a very challenging environment that requires cooperation to solve and has the ability to include forcing of cooperative policies and partial observabilty for study. 
+
+We show empirically that using individual reward in the LBF environment causes an increased in variance of the reward term in the td error signal and any derivative of this term. We study the effects that this increase in variance has on the selected algorithms and discuss if this variance is helpful for the learning of better joint policies in the LBF environment. Our results show that PPO based algorithms, with and without centralized systems and QMIX perform better with individual rewards, while actor critic models based on A2C suffer when using individual rewards.      
+
+This work is comprised of multiple sections starting with the background in Section \ref{sec:Background}.  
+Section \ref{sec:Method} outlines our experimental method and we report our results in section \ref{sec:Results}. We discuss the results and compare them to previous results in section \ref{sec:Discussion}. All supplementary information pertaining to this work can be found in the appendix. 
+
+% ##############################################################################
+%  BACKGROUND 
+% ##############################################################################
+\section{Background}
+\label{sec:Background}
+
+\subsection{Dec-POMDPs}
+We define a fully cooperative task as a \textit{Dec-POMDP} which consists of the tuple $M = <D,S,A,T,O,o,R,h,b_0 > $~\cite{Oliehoek2016}. Where $D$ is the set of agents,  $S$ is the set that describes the true state of the environment, $A$ is the joint action set over all agents, $T$ is the transition probability function, mapping joint actions to state. $O$ is the joint observation set, $o$ represents the observation probability function, $R$ is the reward function which describes the set of all individual rewards for each agent $ \textbf{R} = R^i_t$. The horizon of the problem, $h$, is equivalent to the discount factor $\gamma$ in RL literature. The initial state distribution is given by $b_0$. $M$ describes a partially observable scenario in which agents interact with the environment through observations, without ever knowing the true state of the environment.
+When agents have full access to state information, the tuple becomes $<D,S,A,T,R,h,b_0>$ and is defined as a \textit{Multiagent Markov Decision Process (MMDP)}~\cite{Oliehoek2016}. 
+
+\subsection{Reward functions}
+\subsubsection{Joint reward:} 
+The whole team receives a joint reward value at each timestep taken as the sum of all individual agent rewards $R = R^i = ... = R^N = \sum^N_{i=1}R^i_t$. The joint reward has a interesting property that is usually left aside: by being the summation of all agents rewards, if an agent is not participating in a reward event they still receive a reward. This creates a small but non-zero probability for all agents to receive reward in any state and for any action. In addition, in partially observable tasks, these reward events can occur with no context for some of the agents. The advantage of the joint reward is a salient signal across all that can be learned from, as well as additional information about the performance of team members that may or may not be observable.    
+
+\subsubsection{Individual reward:}
+Mixed tasks differ from the fully cooperative case only in terms of the reward that is received by agents. Mixed tasks attributes individual rewards to each agent rather than a joint reward, making the $R$ term in the tuple $M$, $R=R^i_t$ for each agent i. During reward events, reward is only given to agents that participate in reward events. This reduces the saliancey of the reward signal during a reward event and can cause increased variance in the reward signal when different agents achieve reward. 
+
+
+\subsection{Level Based Foraging}
+Level-Based Foraging (LBF) is a challenging exploration problem in which multiple agents must work together to collect food items scattered randomly on a grid-world\cite{LBF}. The environment is highly configurable, allowing for partial observability and the use of cooperative policies only. In LBF, agents and food are assigned random levels, with the maximum food level always being the sum of all agent levels. Agents can take discrete actions, such as moving in a certain direction, loading food, or not taking any action. Agents receive rewards when they successfully load a food item, which is possible only if the sum of all agent levels around the food is equal to or greater than the level of the food item. Agent observations are discrete and include the location and level of all food and agents on the board, including themselves.
+
+The LBF environment is highly configurable starting with gridworld size, number of agents and number of food. Scenarios in the LBF are described using the following nomenclature: \textit{NxM-Ap-Bf} where \textit{N} and \textit{M} define the size of the gridworld, \textit{A} indicates the number of agents and \textit{B} indicates the number of food objectives in the world. A 10 by 10 grid world with three agents and three food would be described by \textit{10x10-3p-3f}. Additionally, partial observability can be configured by adding \textit{Cs-} before the gridsize. \textit{C} defines the radius size that agents can observe. For all objects outside the radius, the agent will receive a constant value of -1 in that observation. Finally, the addition of the \textit{-coop} tag after the number of food causes the game to enforce all agents be present to collect food, thereby forcing cooperative policies to be the only policies that can be learned. As an example, a eight by eight gridworld with two players and two food which forces cooperative policies while subjecting the agents to partial observability with a radius of two would be specified as \textit{2s-8x8-2p-2f-coop}. 
+% #################################################################
+% RELATED WORK 
+% ###################################################################
+% \section{Related Work}
+% \label{sec:Related Work}
+
+% \subsection{Algorithms}
+
+% In our previous work, we began the investigation of the effects of the shift from fully cooperative reward to cooperative reward \cite{atrazhev2022investigating}. This was done by using the popular MARL environment package, EPYMARL \cite{DBLP:Benchmarking} and modifying the algorithms that are included in it to be compatible with a cooperative reward. The focus of this work was on the \textit{Level Based Foraging} environment because it has partial observablilty as well as very sparse rewards, two qualities that are known to make MARL tasks difficult to learn and are also present in most real world applications of MARL. LBF was modified so that it returned each agents reward as opposed to a joint reward (We refer to this version of the LBF environment as CLBF to distinguish the shorthand notation). Algorithms were naively modified to simply use individual agent rewards with no regard to how this would affect what the policies would be motivated to learn.  During that work, we noticed that value factorization based CLDE methods seemed to improve their convergence speed in the cooperative setting, however overall performance of all algorithms was lessened in the cooperative environment setting.
+
+% \subsection{Level Based Foraging \& Cooperative Level Based Foraging}
+
+% Level Based Foraging \cite{DBLP:Benchmarking, lbf1, lbf2} (LBF) is a sparse-reward hard exploration problems which require significant cooperation across agents. Agents must work together to gather food items that are scattered randomly on a grid-world. LBF is a highly configurable environment that has the ability to independently include partial observability and force cooperative policies only, making it a good environment to test various different MARL systems. 
+% Agents and food are randomly assigned levels such that the maximum food level is always the sum of all the agent levels. Agents have discrete actions corresponding to moving in one of four directions, loading food and no action. Agents receive reward only when they successfully load a food item, which is only possible if the sum of all agent levels around the food is greater or equal to the level of the food item.  Agent observations are discrete and include the location and level of all food on the board and the location and level of all agents on the board (including themselves). When partial observability is toggled, agents can only perceive food and other agents within a certain observable radius. When cooperative policies are forced, agents can only load food when all agents are present at the food. 
+
+% We distinguish between the fully cooperative LBF task with joint reward and a cooperative LBF task with individual reward, referring the latter as the cooperative level based foraging task (CLBF) \cite{atrazhev2022investigating}. In the CLBF environment, the rewards are given as a list and each entry is the reward of a single agent, rather than the sum of all agents rewards as in the original LBF environment. This shift turns the LBF environment from a cooperative environment to a mixed one. 
+
+
+% CHATGPT:
+% Level-Based Foraging (LBF) is a challenging exploration problem in which multiple agents must work together to collect food items scattered randomly on a grid-world. The environment is highly configurable, allowing for partial observability and the use of cooperative policies only. In LBF, agents and food are assigned random levels, with the maximum food level always being the sum of all agent levels. Agents can take discrete actions, such as moving in a certain direction, loading food, or not taking any action. They only receive rewards when they successfully load a food item, which is possible only if the sum of all agent levels around the food is equal to or greater than the level of the food item. Agent observations are discrete and include the location and level of all food and agents on the board, including themselves.
+
+% There are two versions of the task : Fully Cooperative LBF task with joint reward and cooperative LBF task with individual reward which referred as Cooperative Level-Based Foraging Task (CLBF). The CLBF environment, rewards are given to each agent individually rather than the sum of all agents rewards as in the original LBF environment. This shift makes the LBF environment from a cooperative environment to a mixed one.
+
+
+
+
+
+
+
+% \section{Variance analysis}
+% \label{sec:Variance}
+% In this section, we provide a theoretical reasoning for why in the LBF environment the joint reward will increase variance that MARL algorithms experience. Intuitively, the individual reward is easy to understand as there is a direct link between a reward event and a agents state and actions. That is to say, agents have to perform a series of actions in certain states in order to obtain a reward event. When the reward is a joint reward however, this direct causal chain of events is no longer the only way to receive reward. Since reward at every timestep is the sum of all agents reward, then it is possible for a agent to get reward while doing nothing to help the reward event, since other agents are the ones that achieved the goal. This manifests as a nonzero probability of getting reward at any timestep, in any state while performing any action. This disconnection of reward from goal creates an increased variance in the reward signal which is passed into MARL models that are tring to learn using joint reward. 
+
+% It is safe to say that this theory extends to all sparse reward settings where the environment dynamics only result in positive reward upon the completion of a environment goal. However this may not extend to cooperative tasks where there are negative rewards and where rewards are not sparse. We note investigations into these types of MARL domains as future work and touch on them in section \ref{sec:Future}.
+
+% We propose that when training a cooperative MARL system , the choice between joint reward and inividual reward may be more akin to a bias variance tradeoff. In the next section we outline the methods for demonstrating the effects of the increase in variance during training.    
+
+% Chat GPT:
+% In this section, we explain why in a multi-agent reinforcement learning (MARL) environment with a joint reward, the variance of the reward experienced by the agents is higher. This is because when the reward is a joint reward, it is no longer linked only to the actions and states of a single agent. Instead, any agent can receive reward without actively contributing to the goal, resulting in an increased non-zero probability of receiving reward at any timestep, in any state, while performing any action and thereby leading to an increased variance in the reward signal. This theory applies to all environments with sparse rewards, but may not apply to cooperative tasks with negative rewards or non-sparse rewards. We suggest that the choice between joint and individual rewards may be similar to a trade-off between bias and variance in training MARL systems. In the next section, we present methods to demonstrate the effects of this increased variance in training.
+
+
+% #############################################
+% METHOD
+% ##############################################
+\section{Method}
+\label{sec:Method}
+% In order to evaluate the effects of changing the task from a fully cooperative task to a cooperative task we chose to repeat a recent benchmark in the LBF environment~\cite{DBLP:Benchmarking}. By selecting a series of scenarios to study, we can directly compare the results, and can attribute most differences to the increase in task complexity due to the cooperative reward.
+
+
+In order to compare our results with those of previous publications, we made sure that the scenarios and scenario parameters matched those of  Papoudakis et.al. \cite{DBLP:Benchmarking} and Atrazhev et.al. \cite{atrazhev2022investigating} and the results were compared to results from those prior works. 
+
+To remain consistent with previous publications, the scenarios of the LBF selected for this study are: \textit{8x8-2p-2f-coop}, \textit{2s-8x8-2p-2f-coop}, \textit{10x10-3p-3f} and \textit{2s-10x10-3p-3f}. Algorithms are also selected based on this criteria: IQL \cite{mnih2015dqn}, IA2C \cite{DBLP:A3C}, IPPO \cite{DBLP:ppo}, MAA2C \cite{DBLP:Benchmarking}, MAPPO\cite{DBLP:MAPPO}, VDN \cite{sunehag2017vdn} and QMIX \cite{DBLP:Qmix} were selected as they are studied in both Papoudakis et.al. \cite{DBLP:Benchmarking} and in Atrazhev et.al. \cite{atrazhev2022investigating} and represent an acceptable assortment of independent algorithms, centralized critic CLDE algorithms and value factorization CLDE algorithms.  
+
+To evaluate algorithm performance, we calculate the average returns and maximum returns achieved throughout all evaluation windows during training, and 95\% confidence interval across ten seeds.
+
+
+Our investigation consists of varying two variables, reward function and episode length. Episode length was varied between the reported value of 25 used by Papoudakis et.al \cite{DBLP:Benchmarking} and 50 which is the environments default episode length. We perform two separate hyperparameter tuning, one for each reward type, adhering to the hyperparameter tuning protocol includeded in Papoudakis et. al. \cite{DBLP:Benchmarking}. 
+
+All other experimental parameters are taken from Papoudakis et. al. \cite{DBLP:Benchmarking} and we encourage readers to look into this work for further details. 
+
+
+% \subsection{LBF methodology}
+
+% Just as in \cite{DBLP:Benchmarking}, we perform a hyperparameter search on a single LBF scenario and then keep the same hyperparameters for all other scenarios. More information about hyperparameters and the search process can be found in the appendix.
+% In order to perform a statistical analysis of the difference between the joint reward and the individual reward in the LBF environment, we decided to replicate the results of \cite{DBLP:Benchmarking}. This was done using the hyperparameters that are provided by the authors in the appendix. While performing the replication study we discovered that some of the reported results \cite{DBLP:Benchmarking} did not match up with the results we received. More information on this is in the appendix.  
+% Experiments were run with 10 seeds in for each scenario in order to collect statistically significant results. 
+
+
+
+% \subsection{CLBF methodology}
+
+% Tasks selected for this study are: \textit{8x8-2p-2f-coop}, \textit{2s-8x8-2p-2f-coop}, \textit{10x10-3p-3f} and \textit{2s-10x10-3p-3f}. These tasks are selected since they are common between \cite{atrazhev2022investigating} and \cite{DBLP:Benchmarking}. To evaluate algorithm performance, we calculate the average returns achieved throughout all evaluation windows during training, and 95\% confidence interval across ten seeds. For our results to remain comparable with those in \cite{DBLP:Benchmarking} and \cite{atrazhev2022investigating}, we performed hyperparameter a hyperparameter sweep, selecting the best configuration and then keeping it static for all other scenarios. Details of the hyperparameter search protocol can be found in the appendix. 
+
+% We evaluate the following algorithms in order to determine if the decrease in performance reported in our previous work \cite{atrazhev2022investigating} was due to the change in reward or unoptimized hyperparameters. 
+
+
+
+% #########################################################################
+% RESULTS 
+% #########################################################################
+\section{Results}
+\label{sec:Results}
+
+We compare IQL, IA2C, IPPO, MAA2C, MAPPO, VDN and QMIX and report the mean returns and max returns achieved by algorithms using individual reward in tables \ref{tab:New hyperparameter CLBF search average returns} and \ref{tab:New hyperparameter CLBF search Maximum returns} respectively. The mean returns and max returns of algorithms using joint reward are reported in tables \ref{tab:New hyperparameter LBF search average returns} and \ref{tab:New hyperparameter LBF search Maximum returns} respectively.
+We include tables for the increased episode length (50 timesteps) in the appendix. 
+
+    
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+
+\begin{tabular}{c c c c c c c c }
+\toprule
+Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX  \\  \midrule
+8x8-2p-2f-c & $ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.11} $ & $\textbf{1.00} \mathbf{\pm} \textbf{0.00} $         \\ 
+8x8-2p-2f-2s-c &$ 0.97 \pm 0.0 $  &$ 0.94 \pm 0.01 $ &$ 0.95 \pm 0.01 $ & $ 0.93 \pm 0.01 $&$ 0.93 \pm 0.01 $ &$ 0.97 \pm 0.0 $ & $\textbf{0.98} \mathbf{\pm} \textbf{0.00} $\\ 
+10x10-3p-3f &$ 0.94 \pm 0.02 $          & $ 0.86 \pm 0.01 $        &$ 0.88 \pm 0.04 $ &$ 0.85 \pm 0.03 $ &$ 0.86 \pm 0.02 $ &$ 0.93 \pm 0.04 $ & $\textbf{0.95} \mathbf{\pm} \textbf{0.02} $  \\ 
+10x10-3p-3f-2s           &$ 0.75 \pm 0.01 $     &$ 0.71 \pm 0.02 $ &$ 0.76 \pm 0.02 $ &$ 0.7 \pm 0.02 $ &$ 0.73 \pm 0.07 $ &$ 0.74 \pm 0.01 $ & $\textbf{0.77} \mathbf{\pm} \textbf{0.01}$          \\  \bottomrule
+\end{tabular}}
+\caption{Maximum returns and 95\% confidence interval of algorithms using individual reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+\label{tab:New hyperparameter CLBF search Maximum returns}
+\end{table}
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+\begin{tabular}{c c c c c c c c c c }
+\toprule
+Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+8x8-2p-2f-c &$ 0.78 \pm 0.08 $ &$ 0.82 \pm 0.02 $ &$ \textbf{0.84} \mathbf{\pm} \textbf{0.07} $ &$ 0.78 \pm 0.05 $ &$ 0.77 \pm 0.07 $ &$ 0.7 \pm 0.08 $ & $ 0.75\pm 0.04$                \\ 
+8x8-2p-2f-2s-c &$ 0.83 \pm 0.01 $ &$ 0.71 \pm 0.01 $ &$ 0.77 \pm 0.01 $ &$ 0.68 \pm 0.01 $ &$ 0.69 \pm 0.03 $ &$ 0.81 \pm 0.01 $ & $ \textbf{0.86}\pm \textbf{ 0.01}$ \\ 
+10x10-3p-3f &$ 0.68 \pm 0.02 $ &$ 0.7 \pm 0.02 $ &$ \textbf{0.72} \pm \textbf{0.03} $ &$ 0.66 \pm 0.03 $ &$ 0.69 \pm 0.02 $ &$ 0.55 \pm 0.04 $ &$0.58\pm 0.03$           \\ 
+10x10-3p-3f-2s &$ \textbf{0.62} \mathbf{\pm} \textbf{0.0} $ &$ 0.55 \pm 0.02 $ &$ 0.58 \pm 0.02 $ &$ 0.51 \pm 0.02 $ &$ 0.53 \pm 0.06 $ &$ 0.57 \pm 0.01 $ & $
+\textbf{0.62} \mathbf{\pm} \textbf{0.01}$               \\  \bottomrule
+\end{tabular}}
+\caption{Mean return values and 95\% confidence interval of algorithms using individual reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+\label{tab:New hyperparameter CLBF search average returns}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+
+\begin{tabular}{c c c c c c c c }
+\toprule
+Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+8x8-2p-2f-c &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$\textbf{ 1.0 } \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $& $ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $               \\ 
+8x8-2p-2f-2s-c &$ 0.97 \pm 0.01 $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ 0.63 \pm 0.02 $ &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ &$ 0.56 \pm 0.02 $ &$ 0.98 \pm 0.0 $ & $ 0.97 \pm 0.0 $  \\ 
+10x10-3p-3f &$ 0.89 \pm 0.08 $ &$ \textbf{0.99} \mathbf{\pm} \textbf{ 0.01} $ &$ 0.89 \pm 0.02 $ &$ 0.98 \pm 0.01 $ &$ 0.9 \pm 0.24 $ &$ 0.9 \pm 0.03 $ & $ 0.91 \pm 0.02 $         \\ 
+10x10-3p-3f-2s &$ 0.7 \pm 0.01 $ &$ \textbf{0.84} \mathbf{\pm} \textbf{0.04} $ &$ 0.56 \pm 0.01 $ &$ \textbf{0.85} \mathbf{\pm} \textbf{0.01} $ &$ 0.58 \pm 0.01 $ &$ 0.77 \pm 0.01 $ & $ 0.76 \pm 0.04 $
+             \\  \bottomrule
+\end{tabular}}
+\caption{Maximum returns and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+\label{tab:New hyperparameter LBF search Maximum returns}
+\end{table}
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+\begin{tabular}{c c c c c c c c c c }
+\toprule
+Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+8x8-2p-2f-c &$ 0.77 \pm 0.08 $ &$ 0.96 \pm 0.01 $ &$ 0.96 \pm 0.01 $ &$ \textbf{0.97} \mathbf{\pm} \textbf{ 0.01} $ &$ 0.96 \pm 0.02 $ &$ 0.78 \pm 0.04 $ & $ 0.69 \pm 0.04 $                \\ 
+8x8-2p-2f-2s-c &$ 0.82 \pm 0.01 $ &$ \textbf{0.94} \mathbf{\pm} \textbf{0.01} $ &$ 0.39 \pm 0.02 $ &$ \textbf{0.94} \mathbf{\pm} \textbf{0.0} $ &$ 0.45 \pm 0.02 $ &$ 0.84 \pm 0.0 $ & $ 0.79 \pm 0.01 $  \\ 
+10x10-3p-3f &$ 0.47 \pm 0.07 $  &$ \textbf{0.88} \mathbf{\pm} \textbf{0.02} $ &$ 0.71 \pm 0.03 $ &$ 0.87 \pm 0.02 $ &$ 0.59 \pm 0.21 $ &$ 0.56 \pm 0.03 $ & $ 0.46 \pm 0.04 $         \\ 
+10x10-3p-3f-2s &$ 0.56 \pm 0.01 $ &$ 0.67 \pm 0.05 $ &$ 0.44 \pm 0.0 $ &$ \textbf{0.69} \mathbf{\pm} \textbf{0.02} $ &$ 0.46 \pm 0.0 $ &$ 0.6 \pm 0.01 $ & $ 0.56 \pm 0.05 $
+             \\  \bottomrule
+\end{tabular}}
+\caption{Mean return values and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+\label{tab:New hyperparameter LBF search average returns}
+\end{table}
+
+
+We generally observe that in the individual reward case, QMIX is able to consistently achieve the highest maximal return value in all scenario. In terms of highest mean returns, QMIX is able to outperform IPPO in the partially observable scenarios.  
+In the joint reward case, the majority of the results are in line with those reported in \cite{DBLP:Benchmarking} however we note that the average return results for QMIX are much higher with our hyperparameters. We go into more detail regarding these results in appendix \ref{sec:Appendix}. 
+
+Comparing joint reward performance to individual reward performance, we note that the effects of the reward are not easily predictable. Centralized critic algorithms are evenly split in performance, with MAPPO performing better with individual reward while MAA2C's performance suffers. This is paralleled by the independent versions of MAPPO and MAA2C. Value factorization algorithms are also divided, with QMIX performance becoming the top perfoming algorithm across the tested scenarios. VDN however, sees an incredible drop in performance when using joint reward. Finally, IQL performance when using individual reward is relatively unaffected in the simpler 8x8 scenarios but decreases in the larger scenarios. 
+
+
+% \subsubsection*{Independent Methods}
+
+% \textbf{IQL}
+
+% % The study examines the impact of using individual reward versus joint reward in an IQL (Inverse Q-learning) system. The results show that using individual reward tends to increase the mean return and maximum return values, but the variance of these values is also reduced. The study also found that the means of the IQL loss functions decrease when using individual reward, with the exception of one scenario. Additionally, using individual reward tends to increase the mean q-taken values in fully observable scenarios, but has little impact in partially observable scenarios. The study found that in the majority of scenarios there is a reduction in variance of q-taken mean values when using individual reward, however the lack of significance in these findings makes it difficult to draw any major conclusions. In terms of grad norm, the study found that grad norm mean increases when using individual reward and an increase in episode length increases grad norm mean for both rewards. However, the variance of the IQL grad norm values increases with individual reward, but the lack of significance in the majority of the findings makes it difficult to draw any major conclusions.
+
+% The study compares the impact of individual vs joint reward in IQL system and finds that individual reward generally increases mean return and max return but reduces variance. 
+
+% The mean IQL loss decreases with individual reward except in one scenario. In fully observable scenarios, individual reward raises mean q-taken values, but little effect in partially observable scenarios. Majority of scenarios show reduced variance of q-taken mean values with individual reward, but no significant conclusions can be drawn. The grad norm mean increases with individual reward and episode length, but grad norm variance increases with individual reward with no significant conclusions.
+
+% \textbf{IA2C}
+
+% % The study is analyzing the effects of episode length and reward type on various metrics (mean return, max return, agent grad norm, critic grad norm, critic loss, PG loss, Pi max, advantage mean) in the IA2C algorithm. It is found that increasing episode length generally increases mean and max return values, and changing the reward type to individual reward decreases mean return values and significantly increases max return values. Results for agent grad norm and PG loss vary depending on the scenario, with no clear pattern or significant results. Results for critic grad norm, critic loss, Pi max, and advantage mean also show increases with changing episode length and reward type, but with no significant results. The study suggests that more research is needed for these results to be conclusive.
+
+% The study explored the impact of episode length and reward type on the performance of the IA2C algorithm.
+
+% Results showed that longer episode length increases mean and max return, while individual reward reduces mean return but elevates max return. The effect of these factors on other metrics (agent grad norm, critic grad norm, critic loss, PG loss, Pi max, advantage mean) showed increases, but no significant results were found. Further research is recommended.
+
+
+% \textbf{IPPO}
+
+% % The passage describes the results of a study that compares the performance of a reinforcement learning algorithm using individual rewards versus joint rewards. The study looks at several different metrics, including mean and max return, agent and critic grad norm, critic loss, and policy gradient loss. Overall, the results suggest that using individual rewards generally leads to better performance, as measured by these metrics. However, there are some exceptions, such as in the scenario "8x8-2p-2f-coop," where using individual rewards leads to a decrease in max return. The passage also notes that increasing the episode length generally leads to better performance, although there are some exceptions. The study also found that variance in the metrics increases when using individual rewards.
+
+% The study conducted a comparison of the IPPO algorithm's performance using individual and joint rewards, evaluating various performance metrics, including mean and maximum return, gradient norms of the agent and critic, critic loss, and policy gradient loss. 
+
+% The findings indicate that the use of individual rewards generally results in improved performance, as measured by the aforementioned metrics. However, there are instances, such as in the scenario "8x8-2p-2f-coop", where individual rewards result in a decrease in maximum return. Additionally, the study notes that an increase in episode length tends to result in improved performance, with some exceptions. The variance in the metrics was found to increase with the use of individual rewards.
+
+% \subsubsection*{Value Factorization Methods}
+
+% \textbf{VDN}
+
+% The study looks at the effect of using individual rewards versus joint rewards and increasing episode length on six different performance metrics for the VDN algorithm. The mean return, max return, and loss values tend to decrease when using individual rewards in most scenarios, and increasing episode length has varied effects on these values. The Q taken mean, target mean, and grad norm values also tend to decrease when using individual rewards and increase when episode length is increased, however the significance of these results is not very favorable making it difficult to draw definitive conclusions.
+
+% \textbf{QMIX}
+
+% The study evaluated the performance of the QMIX algorithm in various scenarios, with a focus on the effects of episode length and reward function (joint vs individual) on mean return, max return, loss, Q taken mean, target mean, and grad norm. The results generally show that using individual rewards leads to increased mean and max return, decreased loss and q taken mean, and reduced variance in these values. However, the significance of these findings is not very favorable, therefore a definitive conclusion remains to be made. Increasing episode length had varied effects on return values and loss, but generally led to increased grad norm values and reduced variance in these values.
+
+% \subsubsection*{Centralized Critics}
+% \textbf{MAPPO}
+
+% The experiment tested the effects of using individual rewards and increasing episode length on various metrics, such as mean return, max return, agent grad norm, critic grad norm, critic loss, pg loss, pi max, and advantage mean. In general, increasing episode length and using individual rewards tended to improve mean return and max return values in the partially observable cases, but had the opposite effect in the fully observable case. Using individual rewards tended to increase the variance in return means and grad norm values for all scenarios. In the case of pi max and advantage mean, the effect of using individual rewards and increasing episode length varied depending on the scenario. The results suggest that increasing episode length and using individual rewards can improve the performance of the MAPPO algorithm, but the results are not always statistically significant.
+
+
+% \textbf{MAA2C}
+
+% Our results show that increasing the episode limit generally increases mean return values and max return values, regardless of the reward function used. However, using individual rewards instead of a joint reward decreases mean return values and max return values. Variance also generally increases when using individual rewards. The results also show that increasing episode length generally increases agent grad norm and critic grad norm, but the effect is not consistent across all scenarios. Using individual rewards generally increases critic loss and pg loss, and decreases pi max and advantage mean. The majority of these results are statistically significant, but some need more data to confirm their significance.
+
+% ###################################################################
+% DISCUSSION
+% #################################################################
+\section{Discussion}
+\label{sec:Discussion}
+
+\subsection{Independent Algorithms}
+
+\textbf{IQL}: 
+Our results show that IQL achieves increased mean return values and max return values when using individual reward. Our results also show that IQL experienced a reduction in loss variance when using individual reward. Since IQL is a independent algorithm, the joint reward is the only source of information from other agents. Seeing as IQL does not observe the other agents specifically, our results suggest that the joint reward seems to increase the variance in the loss function by the nonzero probability of agents receiving reward at any timestep, as discussed earlier. The reduction in variance in loss function allows for better policies to be learned by each individual agent, and this is further evidenced by the reduction in variance and simultaneous increase in mean of the absolute td error that agents have in the CLBF experiments.
+
+\textbf{IPPO}:
+% IPPO may be slightly resistant to the negative effects of losing the information in joint reward because of its surrogate objective function \cite{ppo}. There is also the case that it gets better since we have evidence from \cite{independentlearningallyouneed}.
+IPPO is able to use the individual reward signal to achieve higher mean return and max returns in all scenarios except 8x8-2p-2f-coop. We believe that this is in most part due to the decrease in variance that is observed in the maximum policy values that are learned. Our results show that the TD error that is generated from multiple different individual rewards seems to be higher and more varied than the TD error that is generated from a joint reward. This variance seems to permeate through the loss function allowing the algorithm to continue discovering new higher policies thought training. It seems that joint reward causes the TD error to start out strong and quickly the algorithm finds a policy (or set of policies) that has the maximal chances of achieving reward at all timesteps. This is a local minima but the error is too small for policies to escape the minima. 
+% Daniel says that the critic might also be converging too fast to be able to drive the actor to find the proper local minima. 
+
+
+\textbf{IA2C}: IA2C suffers from the increase in variance in individual reward. We note evidence of divergent policy behaviour in a number of metrics most notably the critic and policy gradient loss. The critic is sill able to converge however the policy gradient loss diverges quite a bit more in the individual reward case. It seems that a joint reward is necessary to help coordinate the agent behaviour.     
+
+
+\subsection{Value Factorization Algorithms}
+
+\textbf{VDN}:
+VDN with individual reward has a very quick reduction in loss values. Our data suggests that when using individual rewards, VDN converges prematurely on suboptimal policies, causing the observed reduction in mean and max return. This may be due to the fact that VDN does not incorporate any state information into the creation of the joint value function. The authors seem to have relied on the information that is contained in the joint reward to help guide the coordination of agents through the learned joint value function. With the use of individual reward, the joint action value function simply optimizes for the first policy that serves to achieve higher returns without any regard to coordination of agents and without guiding the agents to find optimal policies. 
+
+\textbf{QMIX}: 
+Our results show that when individual reward is used with qmix return mean and max return values are increased.  When comparing joint reward to independent reward, independent reward shows signs of faster convergence in loss and gradient norms. Qmix’s combination of monotonicity constraint and global state information in its hypernetwork seems to be able to find coordinated policies when using individual rewards that achieve higher returns than those found when using joint reward. By leveraging the global state information during training, Qmix the improvement that Qmix shows is significantly higher in the partially observable scenarios, where the increased information builds stronger coordination between agents.  
+
+\subsection{Centralized Critic}
+% Paper that suggests that simply using a centralized critic is not sufficient for better coordination and performance.
+Performance in centralized critics is varied and seems to depend on the underlying algorithm used. 
+
+\textbf{MAA2C}
+The increase in information that is imparted by MAA2C’s centralized critic seems to not be enough to counter the increase in variance that is caused by individual rewards. When using joint rewards, the critic is able to converge and is able to guide the actor policies to find optimal values relatively quickly and is best demonstrated by the convergence of the TD error. When using individual reward, there seems to be too much variance for the critic to be able to converge quickly. It has been shown that simply adding a centralized critic to a actor-critic MARL algorithm with the hopes of decreasing variance in the agent learning is not necessarily true and will actually increase the variance seen by actors \cite{DBLP:contrastingCentralizedDecentralized}. It seems that in MAA2C, using the joint reward to decrease the variance seen by the critic is a good way of increasing performance.   
+We do however note that when we increased the episode length, the individual reward mean and max returns did continue to increase, however it does not show any evidence of rapid convergence. It seems more investigations are required into the effects of increasing the episode length to determine if joint reward has a bias component.
+
+\textbf{MAPPO} 
+
+Similar to IPPO, MAPPO performs better when using individual reward than when using joint reward. MAPPO's centralized critic does not seem to be able to prevent the critic from converging prematurely. Centralized critics have been shown to increase variance \cite{DBLP:contrastingCentralizedDecentralized} however our results show that the increase in variance of the critic loss is not enough. Just as in IPPO the critic converges within 100 episodes when using joint reward. This corresponds to the majority of the gains in return, which seems to indicate some local minima is found by the algorithm. The joint reward    
+
+
+\section{Conclusions and Future Work}
+In summary, our results show that different CLDE algorithms respond in different and unpredicted ways when reward is changed from joint to individual in the LBF environment. MAPPO and QMIX show that they are able to leverage the additional variance that is present in the individual reward to find improved policies while VDN and MAA2C suffer from the increase and perform worse. Of the centralized critic algorithms, it seems that it is crucial that the centralized algorithms critic be able to converge slow enough to find the optimal joint policy but not fast enough to find a local minima. In addition, if the critic is too sensitive to the increase in variance, it may diverge as in MAA2C and be unable to find the optimal policy. Value decomposition methods also seem to need additional state information to condition the coordination of agents to learn optimal policies. 
+Since much of emergent behaviour sought in MARL systems is a function of how agents work together, we feel that the choice of reward function may be of even more importance in MARL environments than in single agent environment. Our results hint that there may be some greater bias variance type trade-off between joint and individual rewards however more research will need to be done to confirm this. 
+
+As we have outlined in several sections in this work, there are still many questions that need answering before we can definitively say that the choice of using a joint reward or a individual reward when training MARL algorithms comes down to a bias-variance trade-off. First off, this theory of increased variance would need studying in simpler scenarios which can be solved analytically in order to confirm that individual rewards do increase variance. This simpler scenario would need to have the same sparse positive reward that is seen in the LBF. Following the establishment of this theoretical underpinning, the next step would be to either relax the sparse constraint or the positive reward constraint and still see if the theory holds true. Once that is done, a definitive conclusion could be presented about the effects of varying reward functions between joint and individual rewards in cooperative MARL systems. 
+
+
+% ###############################################################################
+% END Paper 
+% #################################################################################
+
+\authorcontributions{Conceptualization, P.A.; methodology, P.A. and P.M.; investigation, P.A.; software, P.A.; resources, P.M.; writing---original draft preparation, P.A.; writing---review and editing, P.M.; supervision, P.M.; funding acquisition, P.M. All authors have read and agreed to the published version of the manuscript.}
+
+\conflictsofinterest{The authors declare no conflict of interest.}
+
+\acknowledgments{The authors gratefully acknowledge support provided by the Mitacs Accelerate Entrepreneur program and by the Natural Sciences and Engineering Research Council (NSERC) of Canada.}
+ \setcounter{section}{0}
+\appendix
+% TODO: need to make this appendix work 
+\section{Hyperparameter Optimization}
+\label{sec:Appendix}
+\subsection*{CLBF Hyperparameter optimisation}
+The appendix of \cite{DBLP:Benchmarking} contains the hyperparameter search protocol that they used in order to perform their hyperparameter search. In order to keep the comparison to \cite{DBLP:Benchmarking} I propose that we follow the same hyperparameter search protocol, which is outlined in table \ref{tab:hyperparameters}.
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c c}
+\toprule
+Hyperparameters        &values                \\ \midrule
+Hidden dimension       & 64/128               \\ 
+Learning rate          & 0.0001/0.0003/0.0005 \\ 
+Reward Standardization & True/False           \\ 
+Network Type           & FC/GRU               \\ 
+Evaluation Epsilon     & 0.0/0.05             \\ 
+Epsilon Anneal         & 50000/200000         \\ 
+Target Update          & 200(hard)/0.01(soft) \\ 
+Entropy Coefficient    & 0.01/0.001           \\ 
+n-step                 & 5/10                 \\ \bottomrule
+\end{tabular}
+\caption{Hyperparameter search protocol taken from \cite{DBLP:Benchmarking}}
+\label{tab:hyperparameters}
+\end{table}
+
+The hyperparameter search was performed as follows. A search with three seeds was performed on the 10x10-3p-3f scenario to narrow down a short list of candidate hyperparameter configurations. Priority was given to hyperparameter sets that repeat. 
+
+
+Table \ref{tab:Ippo hyperparameters} Shows the difference between previously tested hyperparameters and the hyperparmeters that were discovered during the hyperparameter search on the CLBF environment.
+
+
+% ################ IPPO hyperparameters 
+\begin{table}[!h]
+\centering
+\begin{tabular}{c c c}
+\toprule
+Hyperparameters        & Papoudakis et. al   & Our hyperparameter search  \\ \midrule
+Hidden dimension       & 128               & 64 \\ 
+Learning rate          & 0.0003 & 0.0003 \\ 
+Reward Standardization & False           &True \\ 
+Network Type           & FC               &GRU\\ 
+Target Update          & 200(hard) & 200(hard) \\ 
+Entropy Coefficient    & 0.001           &0.01\\ 
+n-step                 & 5             &10\\ \bottomrule
+\end{tabular}
+\caption{IPPO selected hyperparameters}
+\label{tab:Ippo hyperparameters}
+\end{table}
+
+% 
+
+
+\newpage
+\section{Validation of Papoudakis et.al. Results}
+
+
+As part of our work on analysis of algorithmic performance we replicated the work that was done as part of \cite{DBLP:Benchmarking} on the LBF environment. This section includes the data that was collected from our repeated experiments. We used the hyperparameters that were reported in the appendix section of \cite{DBLP:Benchmarking} and ran 10 runs for each hyperparameter configuration. The selected hyperparameters were those for parameter sharing and parameter sharing was used for the data collection to keep in line with the results in \cite{DBLP:Benchmarking}. 
+
+We found discrepancies between the reported data in \cite{DBLP:Benchmarking} for VDN and QMIX, and these discrepancies also seem to explain some of the results we reported in \cite{atrazhev2022investigating}. Notably, we found that the convergence of the value factorization methods was not reported properly in \cite{DBLP:Benchmarking} and these convergence values are in line with the increase in convergence rates that we found in \cite{atrazhev2022investigating}.  
+
+
+
+% \begin{sidewaystable}[h]
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+\begin{tabular}{c c c c c c c c }
+\toprule
+Tasks/Algs     &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX  \\  \midrule
+8x8-2p-2f-c    &$ 1.0 \pm 0.0 $ &$ 1.0 \pm 0.00 $ &$ 1.0 \pm 0.00 $ &$ 1.0 \pm 0.00 $ &$ 1.0 \pm 0.0 $ &$ 1.0 \pm 0.00 $ &$ 1.0 \pm 0.00 $     \\ 
+8x8-2p-2f-2s-c         &$ 0.97 \pm 0.01 $  &$ 1.0 \pm 0.0 $       &$ 0.63 \pm 0.02 $ &$ 1.0 \pm 0.0 $ &$ 0.56 \pm 0.02 $ &$ 0.98 \pm 0.00 $ &$ 0.97 \pm 0.0 $\\ 
+10x10-3p-3f & $ 0.89 \pm 0.08 $         &$ 0.99 \pm 0.01 $         &$ 0.89 \pm 0.02 $  &$ 0.98 \pm 0.01 $ &$ 0.9 \pm 0.24 $ &$ 0.9 \pm 0.03 $ &$ 0.91 \pm 0.02 $ \\ 
+10x10-3p-3f-2s           &$ 0.7 \pm 0.01 $     &$ 0.84 \pm 0.04 $ &$ 0.56 \pm 0.01 $ &$ 0.85 \pm 0.01 $ &$ 0.58 \pm 0.01 $ &$ 0.77 \pm 0.01 $ & $ 0.76 \pm 0.04 $         \\  \bottomrule
+\end{tabular}}
+\caption{Maximum returns and 95\% confidence interval of hyperparameter configurations taken from \cite{DBLP:Benchmarking}. Bolded values are those that differ significantly from \cite{DBLP:Benchmarking}.}
+\label{tab:redo papoudakis maximum returns }
+\end{table}
+% \end{sidewaystable}
+
+% \begin{sidewaystable}[h]
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\centering
+\begin{tabular}{c c c c c c c c c c}
+\toprule
+Tasks/Algs    &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX  \\  \midrule
+8x8-2p-2f-c       &$ 0.77 \pm 0.08 $ &$ 0.96 \pm 0.01 $ &$ 0.96 \pm 0.01 $ &$ 0.97 \pm 0.01 $ &$ 0.96 \pm 0.02 $ &$ 0.78 \pm 0.04 $ & $ \textbf{0.69} \pm \textbf{0.04} $                 \\ 
+8x8-2p-2f-2s-c         &$ 0.82 \pm 0.01 $ &$ 0.94 \pm 0.01 $ &$ 0.39 \pm 0.02 $ &$ 0.94 \pm 0.0 $ &$ 0.45 \pm 0.02 $ &$ 0.84 \pm 0.0 $ &$ 0.79 \pm 0.01 $ \\ 
+10x10-3p-3f &$ 0.47 \pm 0.07 $ &$ 0.88 \pm 0.02 $ &$ 0.71 \pm 0.03 $ &$ 0.87 \pm 0.02 $ &$ 0.59 \pm 0.21 $ &$ 0.56 \pm 0.03 $ & $ 0.46 \pm 0.04 $         \\ 
+10x10-3p-3f-2s           &$ 0.56 \pm 0.01 $ &$ 0.67 \pm 0.05 $ &$ 0.44 \pm 0.0 $ &$ 0.69 \pm 0.02 $ &$ 0.46 \pm 0.0 $ &$ 0.6 \pm 0.01 $ &$ 0.56 \pm 0.05 $           \\  \bottomrule
+\end{tabular}}
+\caption{Average returns and 95\% confidence interval of hyperparameter configurations taken from \cite{DBLP:Benchmarking}. Bolded values are those that differ significantly from \cite{DBLP:Benchmarking}.}
+\label{tab:redo papoudakis average return}
+% \end{sidewaystable}
+\end{table}
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+% \begin{tabular}{c c c c c c c c c c}
+% \toprule
+% Tasks/Algs    &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX  \\  \midrule
+% 8x8-2p-2f-c       &0.80 &\textbf{2.56e-10} &\textbf{0.0015} &\textbf{1.87e-07} & &\textbf{1.83e-05} & \textbf{1.82e-08}                  \\ 
+% 8x8-2p-2f-2s-c    &\textbf{0.015} &\textbf{1.57e-16} &\textbf{1.17e-18} &\textbf{2.80e-21} & &\textbf{9.38e-05} & \textbf{0.00311}\\ 
+% 10x10-3p-3f       &\textbf{3.69e-06} &\textbf{2.16e-10} &0.46 &\textbf{2.38e-10} & &\textbf{3.23e-07} & \textbf{2.74e-05}       \\ 
+% 10x10-3p-3f-2s           &\textbf{1.71e-09} &\textbf{4.63e-05} &\textbf{4.19e-11} &\textbf{9.59e-11} & &\textbf{1.60e-07} & \textbf{8.21e-04}       \\  \bottomrule
+% \end{tabular}}
+% \caption{P-values of independent samples t-test comparing average return values that were replicated using hyperparameters outlined in \cite{DBLP:Benchmarking} and those reported in \cite{DBLP:Benchmarking}, bolded values indicate statistically significant rejections}
+% \label{tab:statistical significance of results means }
+% % \end{sidewaystable}
+% \end{table}
+
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+% \begin{tabular}{c c c c c c c c c c}
+% \toprule
+% Tasks/Algs    &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX  \\  \midrule
+% 8x8-2p-2f-c       & & & & & & &                   \\ 
+% 8x8-2p-2f-2s-c    & & & & & & & \\ 
+% 10x10-3p-3f       & & & & & & &        \\ 
+% 10x10-3p-3f-2s           & & & & & & &        \\  \bottomrule
+% \end{tabular}}
+% \caption{P-values of independent samples t-test comparing maximum return values that were replicated using hyperparameters outlined in \cite{DBLP:Benchmarking} and those reported in \cite{DBLP:Benchmarking}}
+% \label{tab:statistical significance of results maxes}
+% % \end{sidewaystable}
+% \end{table}
+
+% ################################################################################################
+
+% #################################################################################################
+% \newpage
+% \section{50 timestep results}
+% \label{sec:App 50 timestep results}
+
+
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+
+% \begin{tabular}{c c c c c c c c }
+% \toprule
+% Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+% 8x8-2p-2f-c &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ & & & & & &                \\ 
+% 8x8-2p-2f-2s-c & & & & & & &  \\ 
+% 10x10-3p-3f & & & & & & &          \\ 
+% 10x10-3p-3f-2s & & & & & &  
+%              \\  \bottomrule
+% \end{tabular}}
+% \caption{Mean returns and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+% \label{tab:50 LBF search mean returns}
+% \end{table}
+
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+
+% \begin{tabular}{c c c c c c c c }
+% \toprule
+% Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+% 8x8-2p-2f-c &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ & & & & & &                \\ 
+% 8x8-2p-2f-2s-c & & & & & & &  \\ 
+% 10x10-3p-3f & & & & & & &          \\ 
+% 10x10-3p-3f-2s & & & & & &  
+%              \\  \bottomrule
+% \end{tabular}}
+% \caption{Maximum returns and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+% \label{tab:50 LBF search Maximum returns}
+% \end{table}
+
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+
+% \begin{tabular}{c c c c c c c c }
+% \toprule
+% Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+% 8x8-2p-2f-c &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ & & & & & &                \\ 
+% 8x8-2p-2f-2s-c & & & & & & &  \\ 
+% 10x10-3p-3f & & & & & & &          \\ 
+% 10x10-3p-3f-2s & & & & & &  
+%              \\  \bottomrule
+% \end{tabular}}
+% \caption{Maximum returns and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+% \label{tab:New hyperparameter LBF search Maximum returns}
+% \end{table}
+
+% \begin{table}[!h]
+% \resizebox{\textwidth}{!}{
+% \centering
+
+% \begin{tabular}{c c c c c c c c }
+% \toprule
+% Scenario        &IQL    &IA2C  &IPPO &MAA2C &MAPPO &VDN &QMIX   \\  \midrule
+% 8x8-2p-2f-c &$ \textbf{1.0} \mathbf{\pm} \textbf{0.0} $ & & & & & &                \\ 
+% 8x8-2p-2f-2s-c & & & & & & &  \\ 
+% 10x10-3p-3f & & & & & & &          \\ 
+% 10x10-3p-3f-2s & & & & & &  
+%              \\  \bottomrule
+% \end{tabular}}
+% \caption{Maximum returns and 95\% confidence interval of algorithms using joint reward in selected scenarios over 10 seeds after a hyperparameter search was completed. Bolded values indicate the best result in a scenario.}
+% \label{tab:New hyperparameter LBF search Maximum returns}
+% \end{table}
+
+
+
+
+\newpage
+\section{Variance Analysis Data}
+This section of the appendix contains all the statistical data analysis that was used during the empirical variance analysis in section \ref{sec:Results}. The statistical analysis used Bartlett's test in order to determin if the variance of two means are the same. The $\alpha$ value used to determine statistical significance is $\alpha = 0.05$. Bartlett's test tests the null hypothesis $h_0$ that the variances of each data distribution tested are identical. If the p-value is below that of the selected $\alpha$, then the null hypothesis is rejected and the variances of the data tested are not the same. 
+In our analysis, the data collected for each run was averaged over and then the set of 10 replicates were used in Bartlett's test. 
+The nan value indicates that there was no variation at all because the algorithm was able to solve the scenario perfectly in the 25 timestep scenarios for both individual and joint reward.
+
+\subsubsection*{IQL}
+Below are the statistics that were gathered on the IQL algorithm. The results aspects of the algorithm that were compared include: \textit{loss}, \textit{grad norm}, \textit{mean of selected q values}, \textit{means of return},\textit{max of returns} , and \textit{target network mean q values for the selected action}. 
+Variances are evaluated between joint reward and independent reward. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.88                     & 0.15                        & \textbf{0.048}        & 0.35                     \\
+50 & \textbf{0.066}           & 0.63                        & 0.18                  & \textbf{0.044}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for gradient norm values of IQL between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:iql-gradnorm}
+\end{table}
+
+% loss
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.014}           & 0.095                       & \textbf{1.45e-3}      & 0.71                     \\
+50 & 0.21                     & 0.069                       & \textbf{6.42e-4}      & 0.67                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for loss values of IQL between 25 timesteps and 50 timesteps.}
+\label{tab:iql-loss}
+\end{table}
+% q-taken-mean
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.68                     & 0.50                        & 0.074                 & \textbf{0.002}           \\
+50 & 0.56                     & 0.49                        & 0.059                 & 0.64                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean q value of selected actions of IQL between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:iql-q-taken-mean}
+\end{table}
+
+% Target means
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.70                     & 0.47                        & 0.080                 & \textbf{2.08e-3}         \\
+50 & 0.56                     & 0.47                        & 0.061                 & 0.63                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the target value of selected actions of IQL between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:iql-target-means}
+\end{table}
+
+% return means mean
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.99                     & 0.36                        & \textbf{2.80e-3}      & \textbf{7.73e-3}         \\
+50 & 0.73                     & 0.48                        & \textbf{0.023}        & 0.57                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean return values of IQL between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:iql-return-mean-means}
+\end{table}
+% return mean maxes
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.84e-6}         & 0.77                        & \textbf{5.28e-5}      & 0.41                     \\
+50 & nan                      & \textbf{9.22e-3}            & \textbf{1.60e-3}      & 0.47                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the max return values of IQL between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:iql-return-mean-maxes}
+\end{table}
+
+\subsubsection*{IPPO}
+Below are the statistics that were gathered on the IPPO algorithm. The statistics that were tested include: \textit{Mean return}, \textit{Max return}, \textit{Agent grad norms}, \textit{critic grad norms}, \textit{Critic loss}, \textit{Policy gradient loss}, \textit{Maximum Pi values of the actor} and \textit{Advantage means}. 
+Variances are evaluated between joint reward and independent reward. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{4.52e-5}         & \textbf{0.074}              & 0.54                  & \textbf{1.14e-5}         \\
+50 & 0.16                     & \textbf{3.39e-6}            & 0.75                  & \textbf{1.37e-4}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for mean returns of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-mean-return-means}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.0}             & \textbf{0.013}              & \textbf{0.049}        & \textbf{9.04e-4}         \\
+50 & \textbf{0.0}             & \textbf{8.66e-7}            & \textbf{8.26e-6}      & 0.34                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for max returns of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-mean-returns-max}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{8.27e-17}        & \textbf{9.97e-4}            & \textbf{1.17e-12}     & \textbf{3.23e-14}        \\
+50 & \textbf{9.14e-16}        & \textbf{5.11e-8}            & \textbf{8.82e-13}     & \textbf{5.99e-18}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for agent grad norms returns of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:IPPO-agent-grad-norms}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.98e-21}        & \textbf{1.15e-13}           & \textbf{2.98e-22}     & \textbf{2.27e-15}        \\
+50 & \textbf{4.39e-23}        & \textbf{2.60e-15}           & \textbf{9.49e-20}     & \textbf{5.75e-18}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for critic grad norms returns of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:IPPO-critic-grad-norm}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.51e-25}        & \textbf{2.56e-10}           & \textbf{2.33e-22}     & \textbf{2.43e-17}        \\
+50 & \textbf{1.69e-28}        & \textbf{1.79e-11}           & \textbf{1.01e-18}     & \textbf{2.90e-18}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for critic loss of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-critic-loss}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.86e-17}        & \textbf{2.06e-9}            & \textbf{5.25e-14}     & \textbf{4.11e-12}        \\
+50 & \textbf{1.22e-22}        & \textbf{9.84e-17}           & \textbf{7.55e-14}     & \textbf{4.60e-14}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for policy gradient loss of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-pg-loss}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.39e-5}         & \textbf{1.28e-3}            & 0.19                  & 0.18                     \\
+50 & 0.64                     & \textbf{6.63e-4}            & \textbf{1.88e-4}      & \textbf{0.011}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for maximum policy values of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-pi-max}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{2.05e-17}        & \textbf{3.98e-10}           & \textbf{9.86e-15}     & \textbf{2.59e-12}        \\
+50 & \textbf{1.12e-21}        & \textbf{1.38e-16}           & \textbf{5.35e-14}     & \textbf{8.63e-14}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for advantage means of IPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:ippo-advantage-mean}
+\end{table}
+
+\subsubsection*{IA2C}
+Below are the statistics that were gathered on the IA2C algorithm. T The statistics that were tested include: \textit{Mean return}, \textit{Max return}, \textit{Agent grad norms}, \textit{critic grad norms}, \textit{Critic loss}, \textit{Policy gradient loss}, \textit{Maximum Pi values of the actor} and \textit{Advantage means}.
+Variances are evaluated between joint reward and independent reward. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.016}           & 0.35                        & 0.63                  & \textbf{6.69e-3}         \\
+50 & \textbf{0.003}           & 0.38                        & 0.12                  & 0.063                    \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for mean return values of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-return-mean-mean}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.0}             & \textbf{4.27e-4}            & \textbf{0.071}        & 0.29                     \\
+50 & \textbf{0.0}             & \textbf{0.0}                & \textbf{2.07e-9}      & \textbf{0.016}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for max return values of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-max-returns}
+\end{table}
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.25                     & 0.24                        & 0.33                  & \textbf{0.005}           \\
+50 & 0.13                     & 0.31                        & \textbf{0.019}        & \textbf{0.010}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for critic grad norm of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-critic-norm}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.60                     & 0.19                        & \textbf{0.011}        & \textbf{4.12e-4}         \\
+50 & 0.81                     & 0.33                        & \textbf{0.045}        & 0.17                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for critic loss of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-critic-loss}
+\end{table}
+
+%
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.25                     & 0.24                        & 0.33                  & \textbf{4.89e-3}         \\
+50 & 0.13                     & 0.31                        & \textbf{0.019}        & \textbf{9.87e-3}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for PG loss of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-pg-loss}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.20                     & 0.17                        & \textbf{3.13e-3}      & \textbf{0.033}           \\
+50 & \textbf{0.029}           & 0.13                        & 0.15                  & \textbf{3.15e-3}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for advantage mean of IA2C between 25 timesteps and 50 timesteps.}
+\label{tab:ia2c-advantage-mean}
+\end{table}
+
+
+\subsubsection*{VDN}
+Below are the statistics that were gathered on the VDN algorithm. The results aspects of the algorithm that were compared include: \textit{loss}, \textit{grad norm}, \textit{mean of selected q values}, \textit{means of return}, \textit{max of returns},and \textit{target network mean q values for the selected action}. 
+Variances are evaluated between joint reward and independent reward. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+
+% GRADIENT NORM
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.30                     & 0.41                        & 1.00                  & 0.13                     \\
+50 & 0.45                     & \textbf{0.011}              & 0.55                  & \textbf{0.005}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for gradient norm values of VDN between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:vdn-grad-norm}
+\end{table}
+
+% LOSS
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.17                     & 0.40                        & \textbf{0.016}        & 0.10                     \\
+50 & 0.87                     & 0.58                        & 0.33                  & 0.076                    \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for loss values of VDN between 25 timesteps and 50 timesteps.}
+\label{tab:VDN-loss}
+\end{table}
+
+% Q-TAKEN-MEAN
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.034}           & 0.099                       & 0.77                  & 0.052                    \\
+50 & \textbf{0.021}           & 0.87                        & 0.83                  & 0.20                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean q value of selected actions of VDN between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:vdn-q-taken-mean}
+\end{table}
+
+% TARGET MEAN 
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.034}           & 0.11                        & 0.78                  & \textbf{0.038}           \\
+50 & \textbf{0.020}           & 0.86                        & 0.81                  & 0.18                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the  target network mean q values of selected actions of VDN between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:vdn-target-mean}
+\end{table}
+
+% MEAN RETURN 
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.038}           & \textbf{0.002}              & 0.27                  & 0.11                     \\
+50 & 0.36                     & 0.75                        & 0.71                  & 0.37                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean return values VDN between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:vdn-mean-return}
+\end{table}
+
+% MAX return
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.0}             & 0.50                        & 0.31                  & 0.089                    \\
+50 & \textbf{0.0}             & 0.26                        & 0.26                  & \textbf{0.003}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the max return values VDN between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:vdn-return-max}
+\end{table}
+
+
+\subsubsection*{QMIX}
+Below are the statistics that were gathered on the QMIX algorithm. The results aspects of the algorithm that were compared include: \textit{loss}, \textit{grad norm}, \textit{mean of selected q values}, \textit{means of return}, \textit{max of returns} ,and \textit{target network mean q values for the selected action}. 
+Variances are evaluated between joint reward and independent reward. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{8.18e-6}         & 0.13                        & \textbf{7.12e-5}      & \textbf{5.66e-8}         \\
+50 & \textbf{9.17e-32}        & \textbf{1.84e-10}           & 0.25                  & \textbf{3.55e-4}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for loss values of Qmix between 25 timesteps and 50 timesteps.}
+\label{tab:qmix-loss}
+\end{table}
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{2.92e-8}         & 0.20                        & \textbf{6.36e-7}      & \textbf{7.19e-10}        \\
+50 & \textbf{1.09e-17}        & \textbf{1.53e-11}           & \textbf{1.06e-3}      & \textbf{9.73e-7}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for gradient norm values of Qmix between 25 timesteps and 50 timesteps grouped by scenario.} 
+\label{tab:qmix-gradnorm}
+\end{table}
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.04}            & 0.55                        & \textbf{0.01}         & \textbf{1.65e-8}         \\
+50 & \textbf{0.04}            & \textbf{2.86e-8}            & \textbf{0.03}         & 0.08                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean q value of selected actions of Qmix between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:qmix-q-taken-mean}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.04}            & 0.52                        & \textbf{6.18e-3}      & \textbf{1.21e-8}         \\
+50 & \textbf{0.03}            & \textbf{2.66e-8}            & \textbf{0.03}         & 0.07                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the  target network mean q values of selected actions of Qmix between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:qmix-target-mean}
+\end{table}
+
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textit{Nan}             & 0.90                        & 0.76                  & \textbf{2.73e-4}         \\
+50 & \textbf{4.65e-6}         & 0.83                        & \textbf{3.90e-4}      & 0.21                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the max return values Qmix between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:qmix-return-mean-max}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.87                     & 0.61                        & 0.40                  & \textbf{1.24e-5}         \\
+50 & \textbf{7.55e-3}         & \textbf{2.10e-2}            & 0.51                  & 0.25                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variances for the mean return values Qmix between 25 timesteps and 50 timesteps grouped by scenario.}
+\label{tab:qmix-return-mean-mean}
+\end{table}
+
+\subsubsection*{MAA2C}
+Below are the statistics that were gathered on the MAA2C algorithm. The statistics that were tested include: \textit{Mean return}, \textit{Max return}, \textit{Agent grad norms}, \textit{critic grad norms}, \textit{Critic loss}, \textit{Policy gradient loss}, \textit{Maximum Pi values of the actor} and \textit{Advantage means}. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.46e-7}         & \textbf{9.93e-5}            & 0.12                  & 0.22                     \\
+50 & \textbf{9.03e-8}         & \textbf{7.12e-12}           & \textbf{1.59e-7}      & 0.89                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for mean returns of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions. }
+\label{tab:maa2c-return-mean-mean}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.0                      & 9.83e-10                    & 1.09e-4               & 0.011                    \\
+50 & 0.0                      & 0.0                         & 9.83e-2               & 0.28       \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for Max Returns of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:return_mean_maxes }
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.90                     & \textbf{7.12e-2}            & 0.43                  & \textbf{4.62e-3}         \\
+50 & \textbf{1.76e-2}         & 0.50                        & 0.80                  & \textbf{4.54e-2}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for agent grad norms of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:maa2c-agent-grad-norm}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & 0.33                     & \textbf{0.020}              & \textbf{2.81e-5}      & 0.74                     \\
+50 & 0.13                     & \textbf{0.005}              & 0.13                  & \textbf{0.012}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for critic grad norms of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:MAA2C-critic-grad-norm}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{0.027}           & \textbf{2.52e-4}            & \textbf{0.004}        & 0.69                     \\
+50 & \textbf{0.029}           & 0.11                        & \textbf{1.20e-5}      & 0.59                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for critic loss of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:MAA2C-critic-loss}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{3.20e-5}         & \textbf{1.32e-5}            & \textbf{2.22e-3}      & \textbf{0.029}           \\
+50 & \textbf{0.034}           & \textbf{1.17e-6}            & \textbf{0.014}        & \textbf{0.025}           \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for pg loss of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:maa2c-pg-loss}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{3.28e-7}         & \textbf{6.16e-4}            & 0.18                  & \textbf{0.019}           \\
+50 & \textbf{3.31e-4}         & \textbf{1.64e-3}            & \textbf{1.94e-8}      & 0.061                    \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for max policy values of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:maa2c-pi-max}
+\end{table}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.51e-3}         & \textbf{0.025}              & \textbf{1.11e-3}      & 0.071                    \\
+50 & 0.38                     & \textbf{3.53e-4}            & 0.90                  & \textbf{1.07e-4}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for advantage mean values of MAA2C varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:maa2c-advantage-mean}
+\end{table}
+
+\subsubsection*{MAPPO}
+Below are the statistics that were gathered on the MAPPO algorithm. The statistics that were tested include: \textit{Mean return}, \textit{Max return}, \textit{Agent grad norms}, \textit{critic grad norms}, \textit{Critic loss}, \textit{Policy gradient loss}, \textit{Maximum Pi values of the actor} and \textit{Advantage means}. Bolded p-values reject the null hypothesis, indicating that the variances between 25 step and 50 step runs are different.
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{3.21e-4}         & 0.12                        & \textbf{1.08e-6}      & \textbf{2.85e-6}         \\
+50 & \textbf{2.76e-6}         & 0.84                        & 0.92                  & \textbf{4.05e-6}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for return means of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-return-mean-means}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{3.28e-5}         & 0.90                        & \textbf{3.71e-8}      & \textbf{3.70e-4}         \\
+50 & \textbf{0.00}            & \textbf{1.86e-5}            & \textbf{1.66e-6}      & \textbf{1.74e-3}         \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for return maxes of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-mean-returns-max}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.73e-12}        & \textbf{1.85e-5}            & \textbf{2.49e-10}     & \textbf{3.24e-9}         \\
+50 & \textbf{6.17e-16}        & \textbf{2.60e-8}            & \textbf{3.29e-13}     & \textbf{4.52e-18}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for agent grad norms of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-agent-grad-norm}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{1.29e-17}        & \textbf{2.35e-11}           & \textbf{6.32e-11}     & \textbf{4.66e-12}        \\
+50 & \textbf{1.53e-20}        & \textbf{1.51e-19}           & \textbf{9.26e-22}     & \textbf{8.30e-20}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for critic grad norm of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-critic-grad-norm}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{3.46e-18}        & \textbf{6.95e-7}            & \textbf{1.15e-7}      & \textbf{6.13e-8}         \\
+50 & \textbf{3.70e-22}        & \textbf{1.11e-17}           & \textbf{1.14e-14}     & \textbf{3.87e-16}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for policy gradient loss of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-pg-loss}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{6.89e-3}         & 0.83                        & \textbf{1.44e-6}      & 0.22                     \\
+50 & \textbf{0.015}           & 0.15                        & 0.40                  & 0.10                     \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for max policy values of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-pi-max}
+\end{table}
+
+
+\begin{table}[!h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+   & Foraging-8x8-2p-2f-coop/ & Foraging-2s-8x8-2p-2f-coop/ & Foraging-10x10-3p-3f/ & Foraging-2s-10x10-3p-3f/ \\ \midrule
+25 & \textbf{2.81e-18}        & \textbf{4.19e-7}            & \textbf{3.13e-7}      & \textbf{5.83e-8}         \\
+50 & \textbf{6.95e-22}        & \textbf{1.27e-17}           & \textbf{1.62e-14}     & \textbf{4.02e-16}        \\ \bottomrule
+\end{tabular}}
+\caption{P-values of Bartlett's test for homogeneity of variance for advantage mean values of MAPPO varying episode length between 25 timesteps and 50 timesteps and comparing reward functions.}
+\label{tab:mappo-adv-mean}
+\end{table}
+
+
+\begin{adjustwidth}{-\extralength}{0cm}
+\reftitle{References}
+\bibliography{bibliography.bib}
+\end{adjustwidth}
+
+% ###################################################################################
+% #####################################################################################
+% ###############################################################################
+\end{document}
+% \resizebox{3cm}{!}{
+%   \begin{something}
+%     something
+%   \end{something}
+%   }

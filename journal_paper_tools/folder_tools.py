@@ -109,6 +109,37 @@ def sort_results_by_environment(path_to_results,list_of_environments):
         except FileNotFoundError:
             print('not the right directory ')
 
+
+def get_rid_of_versions(path_to_experiment):
+    """
+    This function gets rid of the version tags, making it easier to do any kind of analysis
+    """
+    os.chdir(path_to_experiment)
+    dir_list = os.listdir()
+    print(dir_list)
+    try: 
+        dir_list.remove('empty')
+    except ValueError:
+        print("no empty directory") 
+    
+    # get rid of sources 
+    y = max(dir_list)
+    print(y)
+    dir_list.remove(y)
+    print(dir_list)
+    
+        
+    
+    for dir in dir_list: 
+        #Change to directory 
+        # os.chdir(path_to_experiment + dir + '/')
+        name_no_version= dir.split('-')[:-1]
+        name_no_version_full = '-'.join(name_no_version)
+        print(name_no_version_full)
+        os.rename(dir, name_no_version_full)
+
+
+
 def sort_results_by_name(path_to_results,list_of_names):
     """
     This function sorts a results directory by environment. This is useful when you have a bunch of environments in a
@@ -155,7 +186,7 @@ def sort_results_by_name(path_to_results,list_of_names):
                     move_files(source, destination)
         except FileNotFoundError:
             print('not the right directory ')
-
+    
 def _main():
     
     
@@ -167,12 +198,20 @@ def _main():
     # destination = 'C:/source/atpeterepymarl/src/results/qtran_regular_hs'
     
     # copy_folder(source, destination)
-
+    alg = 'mappo'
 
     #### Sort by environments #########
-    path_to_results = "C:/source/atpeterepymarl/src/results/iql_for_journal/"
-    
-    path_to_results = 'C:/Users/Wintermute/Desktop/lbf data collection/qmix_data_collection_real/'
+    path_to_results = 'C:/source/results for journal/Results for paper/%s/CLBF/%s_CLBF_50step'%(alg, alg)
+    # path_to_results = ['C:/source/results for journal/Results for paper/%s/LBF/%s_LBF_25step'%(alg, alg),
+    # 'C:/source/results for journal/Results for paper/%s/LBF/%s_LBF_50step'%(alg, alg),
+    # 'C:/source/results for journal/Results for paper/%s/CLBF/%s_CLBF_25step'%(alg, alg),
+    # 'C:/source/results for journal/Results for paper/%s/CLBF/%s_CLBF_50step'%(alg, alg)
+    # ]
+    # path = 'C:/source/results for journal/Results for paper/%s/LBF/%s_LBF_25step'%(alg, alg)
+
+    # C:\source\results for journal\Results for paper\iql_update\iql\iql\LBF\iql_lbf_25step
+    # path_to_results = 'C:/Users/Wintermute/Desktop/lbf data collection/qmix_best_conf_50steps/'
+    # C:\source\atpeterepymarl\src\results\qmix_best_conf_50steps
 
     list_of_envs = [
         'Foraging-10x10-3p-3f-v2',
@@ -180,11 +219,13 @@ def _main():
         'Foraging-8x8-2p-2f-coop-v2',
         'Foraging-2s-8x8-2p-2f-coop-v2'
     ]
-    list_of_names = [
-        'qmix_best_conf_0'
-    ]
-    
-    
+    # list_of_names = [
+    #     'iql_lbf'
+    # ]
+    # for path in path_to_results:
+    #     print(path)
+    #     get_rid_of_versions(path)
+
     sort_results_by_environment(path_to_results,list_of_envs)
 
     # for env in list_of_envs:
@@ -192,12 +233,7 @@ def _main():
     #     print(env)
     #     sort_results_by_name(path_to_env, list_of_names)
     
-    sort_results_by_environment(path_to_results,list_of_envs)
-
-    # for env in list_of_envs:
-    #     path_to_env = path_to_results + env
-    #     print(env)
-    #     sort_results_by_name(path_to_env, list_of_names)
+    
 
 if __name__ == '__main__':
     _main()

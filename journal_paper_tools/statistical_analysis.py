@@ -11,7 +11,7 @@ import seaborn as sns
 import pandas as pd
 from Journal_data_vis_utils import open_file
 import math
-
+from pprint import pprint
 
 
 
@@ -22,13 +22,15 @@ def get_all_values_using_key_from_dir_path(path_to_collected_data, key='return_m
     returns: dict {run_id:[values]}
     """
     data = {}
+    print('path in get all ', path_to_collected_data)
     os.chdir(path_to_collected_data)
     # print(os.getcwd())
     dir_list = os.listdir()
+    print('inside get_all_values_using_key', dir_list)
     # get the data
     for path in dir_list:
         metrics_path = path_to_collected_data + path + '/metrics.json'
-        # print('metrics path', metrics_path)
+        print('metrics path', metrics_path)
         file_data = open_file(metrics_path)
         data[path] = [float(x) for x in file_data[key]['values']]
 
@@ -60,9 +62,12 @@ def plot_histogram(path_to_collected_data, value_to_plot='return_mean'):
     plt.show()
     
 
-def compare_two_means(path_to_test_one, path_to_test_two):
-    data_1 = get_all_values_using_key_from_dir_path(path_to_test_one)
-    data_2 = get_all_values_using_key_from_dir_path(path_to_test_two) 
+def compare_two_means(path_to_test_one, path_to_test_two, scenario):
+    print('path 1', path_to_test_one)
+    print('path 2', path_to_test_two)
+
+    data_1 = get_all_values_using_key_from_dir_path(path_to_test_one + scenario)
+    data_2 = get_all_values_using_key_from_dir_path(path_to_test_two + scenario) 
     
     data_1_means = get_mean(data_1)
     data_2_means = get_mean(data_2)
@@ -70,6 +75,8 @@ def compare_two_means(path_to_test_one, path_to_test_two):
     print(x)
     if x['p-val'].item() < 0.05:
         print("Null hypothesis rejected. Pval is ", x['p-val'].item())
+    
+    return x
 
 
 def get_mean(data_dictionary):
@@ -86,13 +93,14 @@ def get_maxes(data_dictionary):
     
     return maxes
 
-def mean_across_all_runs(path):
-    data = get_all_values_using_key_from_dir_path(path)
+def mean_across_all_runs(path, parameter = 'return_mean'):
+    print('Path for mean', path)
+    data = get_all_values_using_key_from_dir_path(path, key=parameter)
     means = get_mean(data)
     return means
 
-def max_across_all_runs(path):
-    data = get_all_values_using_key_from_dir_path(path)
+def max_across_all_runs(path, parameter = 'return_mean'):
+    data = get_all_values_using_key_from_dir_path(path, key=parameter)
     maxes = get_maxes(data)
     return maxes
 
@@ -170,18 +178,19 @@ def box_plots_axes_scenario(major_paths, scenario, ax, maxes = False, parameter=
     datas = []
     experiments = []
     for path in major_paths: 
+        print('path for plot', path)
         # add the right -v to the scenario: 
         experiments.append(path.split('/')[-2])
-        if path.split('/')[2] ==  'molly':
-            _scenario = scenario + '-v2/'
-        else:
-            _scenario = scenario + '-v0/'
+        # if path.split('/')[2] ==  'molly':
+        #     _scenario = scenario + '-v2/'
+        # else:
+        #     _scenario = scenario + '-v0/'
         
-        # print('scenario data path', scenario ,path + _scenario)
+        # print('scenario data path', scenario ,path + scenario)
         if not maxes:
-            datas.append(mean_across_all_runs(path + _scenario))
+            datas.append(mean_across_all_runs(path + scenario, parameter))
         else:
-            datas.append(max_across_all_runs(path + _scenario))
+            datas.append(max_across_all_runs(path + scenario, parameter))
 
     # print(experiments)   
     colors = ['pink', 'lightblue', 'lightgreen','orchid' ]
@@ -226,11 +235,11 @@ def plot_all_boxplots_for_comparison(path_array, title, show=False):
     ]
 
     # set up the major figure and axes: 
-    fig, ax = plt.subplots(num_columns , n_rows, sharey=True)
+    fig, ax = plt.subplots(num_columns , n_rows)
 
     plots_ = zip(boxes, path_array )
     for i, (box, path) in enumerate(plots_):
-        print(i, box, path)
+        # print(i, box, path)
         comp = path.split('/')[2]
         if comp == 'molly':
                 #molly uses v2
@@ -262,7 +271,7 @@ def plot_all_boxplots_for_comparison(path_array, title, show=False):
         plt.show()
 
 
-def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean' ,show=False, maxes=False):
+def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean' ,show=False, maxes=False, save_fig=False):
     '''
     This function creates a subplot for each scenario. Each subplot contains a box and whisker comparison of all the different experiments fed to the function
 
@@ -275,10 +284,10 @@ def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean
 
     '''
     scenarios = [
-        'Foraging-8x8-2p-2f-coop',
-        'Foraging-2s-8x8-2p-2f-coop',
-        'Foraging-10x10-3p-3f',
-        'Foraging-2s-10x10-3p-3f'
+        'Foraging-8x8-2p-2f-coop/',
+        'Foraging-2s-8x8-2p-2f-coop/',
+        'Foraging-10x10-3p-3f/',
+        'Foraging-2s-10x10-3p-3f/'
     ]
     # get the number of subplots to make
     total = len(experiment_paths)
@@ -293,13 +302,65 @@ def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean
         for j in y:
             boxes.append((i,j))
     # create the fig and subplot axes 
-    fig, ax = plt.subplots(num_columns , n_rows, sharey=True)
+    fig, ax = plt.subplots(num_columns , n_rows, figsize = (18,12))
 
     plots_ = zip(boxes, scenarios)
 
     for i, (box, scenario) in enumerate(plots_):
-        # print(i, box, scenario, experiment_paths)
-        box_plots_axes_scenario(experiment_paths,scenario, ax[box], maxes=maxes)
+        print(i, box, scenario, experiment_paths)
+        box_plots_axes_scenario(experiment_paths,scenario, ax[box], maxes=maxes,parameter=parameter_to_plot)
+        
+
+    if show:
+        if maxes:
+            fig.suptitle(title + ' maxes '+ parameter_to_plot)
+        else:
+            fig.suptitle(title + ' ' + parameter_to_plot)
+    
+        plt.show()
+    
+    if save_fig:
+        print(os.getcwd())
+        path = experiment_paths[0].split('/')
+        path = '/'.join(path[:5]) + '/'
+        print(path)
+        os.chdir(path)
+        if maxes:
+            fig.suptitle(title + ' maxes '+ parameter_to_plot)
+        else:
+            fig.suptitle(title + ' ' + parameter_to_plot)
+        plt.savefig(path + 'boxplots_' + parameter_to_plot +'.png' )
+        
+
+
+def mean_lineplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean' ,show=False, maxes=False):
+    scenarios = [
+        'Foraging-8x8-2p-2f-coop/',
+        'Foraging-2s-8x8-2p-2f-coop/',
+        'Foraging-10x10-3p-3f/',
+        'Foraging-2s-10x10-3p-3f/'
+    ]
+    # get the number of subplots to make
+    total = len(experiment_paths)
+    num_columns = math.ceil(total / 2)
+    n_rows = 2 
+
+    boxes = []
+    x = range(num_columns)
+    y = range(n_rows)
+    
+    for i in x: 
+        for j in y:
+            boxes.append((i,j))
+    # create the fig and subplot axes 
+    fig, ax = plt.subplots(num_columns , n_rows)
+
+    plots_ = zip(boxes, scenarios)
+
+    for i, (box, scenario) in enumerate(plots_):
+        print(i, box, scenario, experiment_paths)
+        # TODO: this is where you populate each box with a plot of means of the value rather than boxplots. 
+        # box_plots_axes_scenario(experiment_paths,scenario, ax[box], maxes=maxes,parameter=parameter_to_plot)
         
 
     if show:
@@ -312,28 +373,156 @@ def boxplots_by_scenario(experiment_paths, title, parameter_to_plot='return_mean
 
 
 
-def _main():
-    # path = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-2s-10x10-3p-3f-v0/'
-    big_paths = [
+def bartletts_test(array):
+    # in order to do bartletts test, i need to get the mean arrays 
+    one, two = array
+    result = stats.bartlett(one, two)
+    print('-----------------------------------------------')
+    print(result)
+    print('p value', result[1])
+    if result[1] <= 0.05: 
+        print('null hypothesis rejected, variances are different')
+        print('---------------------------------------------')
+    else: 
+        print('null hypothesis accepted, variances are statistically the same.')
+        print('----------------------------------------------')
+    return result[1]
+
+def calculate_bartlett(paths_to_experiments, parameter='return_mean', maxes = False):
+    means_25 = []
+    means_50 = []
+
+    scenarios = [
+        'Foraging-8x8-2p-2f-coop/',
+        'Foraging-2s-8x8-2p-2f-coop/',
+        'Foraging-10x10-3p-3f/',
+        'Foraging-2s-10x10-3p-3f/'
+    ]
+    
+    # add the scenarios to the experiment:
+    # open each scenario 
+    # parse the data into the two sections that I need: 
+    # 25 - 
+    df = pd.DataFrame(columns=scenarios, index=[25,50])
+    var_df = pd.DataFrame(columns=scenarios, index=[25,50])
+    for scenario in scenarios: 
+        # open the list 
+        print("############################################################")
+        print('scenario', scenario)
+        for path in paths_to_experiments:  
+            # print('path', path)  
+            path_to_scenario = path + scenario
+            # print('Path to scenario', path_to_scenario)
+            data_dict = get_all_values_using_key_from_dir_path(path_to_scenario, key=parameter)
+            the_mean = get_mean(data_dict)
+            if maxes: 
+                the_mean = get_maxes(data_dict)
+            
+            step_num = path_to_scenario.split('/')[-3]
+            # print('step num', step_num)
+            step_num_last = step_num.split('_')[-1]
+            # print('step num last', step_num_last)
+            num = step_num_last[:2]
+            # print('num', num)
+            if num == '25':
+                means_25.append(the_mean)
+            if num == '50': 
+                means_50.append(the_mean)
+
+        # print('means 25',means_25)
+        # print('means 50',means_50)
+        if means_25:
+            print('25')
+           
+            df[scenario][25] = bartletts_test(means_25)
+            # variance calculation: 
+            # var_25 = np.var(means_25[0])
+            var_25 = [np.var(means_25[i]) for i in range(len(means_25))]
+            var_df[scenario][25] = var_25[1]-var_25[0]
+            means_25.clear()
+            
         
-        'C:/Users/molly/Desktop/lbf_data/qmix lbf data/',
-        'C:/source/atpeterepymarl/src/results/qmix_for_journal/',
-        "C:/source/atpeterepymarl/src/results/qmix_lbf_50_steps/",
-        'C:/source/atpeterepymarl/src/results/qmix_best_conf_50steps/'
-            ]
+        if means_50: 
+            print('50')
+            
+            df[scenario][50] = bartletts_test(means_50)
+            # var_50 = np.var(means_50[0])
+            var_50 = [np.var(means_50[i]) for i in range(len(means_50))]
+            var_df[scenario][50] = var_50[1]- var_50[0]
+            means_50.clear()
+        print("############################################")
 
-    path= 'C:/source/atpeterepymarl/src/results/qmix_best_conf_50steps/Foraging-8x8-2p-2f-coop-v0/'
-    path3 = 'C:/Users/molly/Desktop/lbf_data/qmix lbf data/Foraging-8x8-2p-2f-coop-v2/'
-    path2 = 'C:/source/atpeterepymarl/src/results/qmix_best_conf_100steps/Foraging-8x8-2p-2f-coop-v0/'
-    path4 = 'C:/source/atpeterepymarl/src/results/qmix_for_journal/Foraging-8x8-2p-2f-coop-v0/'
+    # here we can create a dataframe that is outside of each scenario 
+    print(os.getcwd())
+    # need to get back to the major path; 
+    path_list = paths_to_experiments[-1].split('/')
+    print('path_list', path_list)
+    
+    print(df.head())
+    print('path to experiments', paths_to_experiments[-1])
+    path_to_csv = '/'.join(paths_to_experiments[-1].split('/')[:5] ) + '/' + parameter + '.csv'
+    # path_to_csv = paths_to_experiments[-1].split('/')[-2].split('_')[0] + '_' + parameter + '.csv'
+    print(path_to_csv)
+    print('Difference of variance dataframe ')
+    print(var_df.head())
+    # from pathlib import Path 
+    # path = Path(os.getcwd()).joinpath(path_to_csv)
+    # print(path)
+    df.to_csv(path_to_csv)
+
+
+
+
+
+
+
+def _main():
+   
+    
+    alg = 'mappo'
+    path_to_results = ['C:/source/results for journal/Results for paper/%s/LBF/%s_LBF_25step/'%(alg, alg),
+    'C:/source/results for journal/Results for paper/%s/LBF/%s_LBF_50step/'%(alg, alg),
+    'C:/source/results for journal/Results for paper/%s/CLBF/%s_CLBF_25step/'%(alg, alg),
+    'C:/source/results for journal/Results for paper/%s/CLBF/%s_CLBF_50step/'%(alg, alg)
+    ]
+
+    parameter_keys = [
+        'return_mean', 
+        'grad_norm',
+        'loss', 
+        'q_taken_mean',
+        'target_mean'
+    ]
+    ippo_keys = [
+        'agent_grad_norm',
+        'critic_grad_norm',
+        'critic_loss'
+        'pg_loss',
+        'pi_max',
+        'advantage_mean'
+    ]
+    scenarios = [
+        'Foraging-8x8-2p-2f-coop/',
+        'Foraging-2s-8x8-2p-2f-coop/',
+        'Foraging-10x10-3p-3f/',
+        'Foraging-2s-10x10-3p-3f/'
+    ]
     # plot_histogram(path)
-    # compare_two_means(path, path2)
+    # df = pd.DataFrame(columns=[scenarios], index=['p-value'])
+    # pvalues = {}
+    # for scenario in scenarios:
+    #     pvalues[scenario] = compare_two_means(path_to_results[0], path_to_results[2], scenario)['p-val'].item()
+    
+    # print(df.head())
+    # pprint(pvalues)
     # grab the result values for means 
-    paths = [path3 ,path4 ,path, path2]
-
-
+   
     # box_plot_between_means(paths, show = True)
     # plot_all_boxplots_for_comparison(big_paths, 'qmix', show= True)
-    boxplots_by_scenario(big_paths, 'QMIX response surface between time and reward type',maxes=False ,show=True)
+    parameter_plot = 'advantage_mean'
+    boxplots_by_scenario(path_to_results, '%s response surface between time and reward type'%alg ,parameter_to_plot=parameter_plot ,maxes=False ,show=False, save_fig=True)
+   
+    calculate_bartlett(path_to_results,parameter=parameter_plot, maxes = False)
+
 if __name__ == "__main__":
     _main()
